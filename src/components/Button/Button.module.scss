@@ -1,0 +1,9 @@
+$btn-bg-color: #003CFF;
+$btn-text-color: #FFFFFF;
+
+.button {
+    font: 700 16px 'Ubuntu';
+    background-color: $btn-bg-color;
+    color: $btn-text-color;
+    border: none;
+}
