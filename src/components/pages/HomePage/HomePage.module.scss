@@ -1,6 +1,8 @@
 @use '@/styles/mixins/typography' as typography;
 
 $text-color: #1C1C1E;
+$features-color: #4F5665;
+$features-title-color: #0B132A;
 
 .choose {
     margin: 131px 0 112px 0;
@@ -42,5 +44,54 @@ $text-color: #1C1C1E;
 
     &__card img {
         display: block;
+    }
+}
+
+.features {
+    display: flex;
+    justify-content: space-between;
+    color: $features-color;
+    letter-spacing: 0%;
+    line-height: 30px;
+
+    &__text {
+        padding-top: 74px;
+        text-align: left;
+        @include typography.rubik-400;
+    }
+
+    &__title {
+        margin-bottom: 20px;
+        @include typography.rubik-500;
+        font-size: 35px;
+        color: $features-title-color;
+        line-height: 50px;
+    }
+
+    &__paragraph {
+        font-size: 16px;
+    }
+
+    &__list {
+        margin-top: 25px;
+        padding: 0;
+        list-style-type: none;
+        font-size: 14px;
+    }
+
+    &__item {
+        margin-bottom: 12px;
+        position: relative;
+        padding-left: 42px;
+
+        &::before {
+            content: '';
+            width: 24px;
+            height: 24px;
+            position: absolute;
+            left: 0;
+            transform: translateY(15%);
+            background-image: url('@/assets/images/Group1120.svg');
+        }
     }
 }
