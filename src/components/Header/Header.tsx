@@ -5,8 +5,8 @@ import { Button } from '../Button/Button';
 export function Header() {
   return (
     <header className={styles.header}>
-      <NavLink to="/">
-        <h1 className={styles['header__title']}>NeoBank</h1>
+      <NavLink className={styles['header__title']} to="/">
+        NeoBank
       </NavLink>
       <nav className={styles['header__navbar']}>
         <ul className={styles['header__list']}>
