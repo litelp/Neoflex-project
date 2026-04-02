@@ -5,6 +5,7 @@ import creditCard_2 from '@assets/images/cardImage2.png';
 import creditCard_3 from '@assets/images/cardImage3.png';
 import creditCard_4 from '@assets/images/cardImage4.png';
 import featuresImg from '@assets/images/Illustration.svg';
+import { CurrencyRatesSection } from '@/components/sections/CurrencyRatesSection/CurrencyRatesSection';
 
 export function HomePage() {
   return (
@@ -57,6 +58,7 @@ export function HomePage() {
           </ul>
         </div>
       </section>
+      <CurrencyRatesSection />
     </main>
   );
 }
