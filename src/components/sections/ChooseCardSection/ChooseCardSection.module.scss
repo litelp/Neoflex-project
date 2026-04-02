@@ -1,0 +1,46 @@
+@use '@/styles/mixins/typography' as typography;
+
+$text-color: #1C1C1E;
+
+.choose {
+    margin: 131px 0 112px 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    @include typography.ubuntu-700;
+
+    &__title {
+        max-width: 622px;
+        margin: 0;
+        text-align: left;
+        font-size: 48px;
+        letter-spacing: 0%;
+        line-height: 50px;
+        color: $text-color;
+    }
+
+    &__button {
+        width: 160px;
+        height: 50px;
+        margin-top: 36px;
+        grid-row: 2;
+        border-radius: 16px;
+    }
+
+    &__list {
+        margin: 0;
+        padding: 0;
+        grid-column: 2;
+        grid-row: span 2;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        align-content: flex-start;
+        gap: 16px;
+        list-style-type: none;
+    }
+
+    &__card img {
+        display: block;
+    }
+}

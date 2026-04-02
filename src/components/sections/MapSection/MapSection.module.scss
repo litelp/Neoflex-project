@@ -1,0 +1,23 @@
+@use '@/styles/mixins/typography' as typography;
+
+$title-color: #1C1C1C;
+$text-color: #1C1C1E;
+
+.map {
+    &__title {
+        line-height: 50px;
+        letter-spacing: 0;
+        font-size: 30px;
+        color: $title-color;
+        @include typography.ubuntu-500;
+    }
+
+    &__text {
+        line-height: 50px;
+        letter-spacing: 0;
+        margin: 8px 0 48px 0;
+        font-size: 16px;
+        color: $text-color;
+        @include typography.ubuntu-500;
+    }
+}
