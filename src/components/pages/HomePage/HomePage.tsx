@@ -3,6 +3,7 @@ import { CurrencyRatesSection } from '@/components/sections/CurrencyRatesSection
 import { MapSection } from '@/components/sections/MapSection/MapSection';
 import { FeaturesSection } from '@/components/sections/FeaturesSection/FeaturesSection';
 import { ChooseCardSection } from '@/components/sections/ChooseCardSection/ChooseCardsSection';
+import { SubscribeSection } from '@/components/sections/SubscribeSection/SubscribeSection';
 
 export function HomePage() {
   return (
@@ -11,6 +12,7 @@ export function HomePage() {
       <FeaturesSection />
       <CurrencyRatesSection />
       <MapSection />
+      <SubscribeSection />
     </main>
   );
 }

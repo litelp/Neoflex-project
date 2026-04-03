@@ -1,0 +1,99 @@
+@use '@/styles/mixins/typography' as typography;
+
+$link-color: #EB801D;
+$text-color: #1C1C1E;
+$form-color: #FFFFFF;
+$input-color: #9092B0;
+$btn-color: #686DF1;
+
+.subscribe {
+    margin: 64px 0 98px 0;
+    @include typography.ubuntu-700;
+    color: $text-color;
+
+    &__support-link {
+        text-decoration: none;
+        font-size: 24px;
+        color: $link-color;
+    }
+
+    &__title {
+        margin: 30px 0 62px 0;
+        line-height: 120%;
+        font-size: 30px;
+        letter-spacing: 0.02em;
+    }
+
+    &__subtitle {
+        margin-top: 27px;
+        display: block;
+        line-height: 147%;
+        font-size: 30px;
+        letter-spacing: 0.02em;
+        @include typography.ubuntu-500;
+    }
+
+    &__form {
+        max-width: 524px;
+        margin: 62px auto 0 auto;
+        padding: 22px 32px 22px 70px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 20px;
+        background-color: $form-color;
+        box-shadow: 0px 10px 20px 0px #363A781A;
+    }
+
+    &__field {
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            width: 28px;
+            height: 37px;
+            left: -32px;
+            top: -5px;
+            background-image: url(@assets/images/email.svg);
+        }
+    }
+
+    &__input {
+        border: none;
+        font-size: 20px;
+        color: $input-color;
+        @include typography.nunito-sans-400;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &__button {
+        width: 161px;
+        height: 45px;
+        position: relative;
+        padding: 14px 30px 13px 55px;
+        background-color: $btn-color;
+        border: none;
+        border-radius: 20px;
+        color: $form-color;
+        @include typography.ubuntu-700;
+
+        &::after {
+            content: '';
+            width: 24px;
+            height: 38px;
+            position: absolute;
+            left: 14px;
+            top: 0;
+            background-image: url(@/assets/images/send.svg);
+        }
+
+        &:hover {
+            cursor: pointer;
+            box-shadow: 0px 10px 20px 0px rgba(54, 58, 120, 0.1019607843);
+        }
+    }
+}
