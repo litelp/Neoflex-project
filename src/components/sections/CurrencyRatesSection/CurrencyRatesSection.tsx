@@ -17,7 +17,7 @@ function getDate(date: Date, zone: string): { dateTime: string; text: string } {
 
   return {
     dateTime: `${year}-${month}-${day}`,
-    text: `Updated every 15 minutes, ${zone} ${day}.${month}.${year}`,
+    text: `Update every 15 minutes, ${zone} ${day}.${month}.${year}`,
   };
 }
 
@@ -36,7 +36,8 @@ export function CurrencyRatesSection() {
         setDate(new Date());
         setError(null);
       } catch {
-        setError('Error loading currency rates. Try again later.');
+        setError('Error loading currency rates');
+        setRates(null);
       } finally {
         setIsLoading(false);
       }
@@ -57,22 +58,6 @@ export function CurrencyRatesSection() {
 
   const currentDate = date ? getDate(date, TIME_ZONE) : null;
 
-  if (!rates) {
-    return (
-      <section className={styles.currency}>
-        <p>Error receiving data</p>
-      </section>
-    );
-  }
-
-  if (error) {
-    return (
-      <section className={styles.currency}>
-        <p>{error}</p>
-      </section>
-    );
-  }
-
   return (
     <section className={styles.currency}>
       <h2 className={styles['currency__title']}>
@@ -86,12 +71,19 @@ export function CurrencyRatesSection() {
           {currentDate.text}
         </time>
       )}
+
       <h3 className={styles['currency__subtitle']}>Currency</h3>
       {isloading ? (
-        <span>Loading...</span>
+        <div
+          role="loading"
+          className={styles['currency__loader']}
+          aria-label="Loading currency rates"
+        />
+      ) : error ? (
+        <p className={styles['currency__error']}>{error}</p>
       ) : (
         <ul className={styles['currency__list']}>
-          {Object.entries(rates).map(([currency, value]) => (
+          {Object.entries(rates ?? {}).map(([currency, value]) => (
             <li className={styles['currency__item']} key={currency}>
               <span className={styles['currency__name']}>{currency}:</span>
               <span className={styles['currency__value']}>{value}</span>
@@ -99,7 +91,7 @@ export function CurrencyRatesSection() {
           ))}
         </ul>
       )}
-      <Link className={styles['currency__link']} to="/">
+      <Link className={styles['currency__all-courses-link']} to="/">
         All courses
       </Link>
     </section>
