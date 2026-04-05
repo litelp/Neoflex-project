@@ -12,30 +12,32 @@ $btn-color: #686DF1;
     color: $text-color;
 
     &__support-link {
+        margin-left: 12px;
         text-decoration: none;
         font-size: 24px;
         color: $link-color;
+        line-height: 0;
     }
 
     &__title {
-        margin: 30px 0 62px 0;
-        line-height: 120%;
+        margin: 40px 0 62px 23px;
         font-size: 30px;
         letter-spacing: 0.02em;
+        line-height: 1.2em;
     }
 
     &__subtitle {
         margin-top: 27px;
         display: block;
-        line-height: 147%;
+        line-height: 1.47em;
         font-size: 30px;
         letter-spacing: 0.02em;
         @include typography.ubuntu-500;
     }
 
     &__form {
-        max-width: 524px;
-        margin: 62px auto 0 auto;
+        max-width: 423px;
+        margin: 62px auto 0 396px;
         padding: 22px 32px 22px 70px;
         display: flex;
         align-items: center;
@@ -53,17 +55,19 @@ $btn-color: #686DF1;
             position: absolute;
             width: 28px;
             height: 37px;
-            left: -32px;
-            top: -5px;
+            left: -37px;
+            top: -6px;
             background-image: url(@assets/images/email.svg);
         }
     }
 
     &__input {
+        padding: 0 0 0 4px;
         border: none;
         font-size: 20px;
         color: $input-color;
         @include typography.nunito-sans-400;
+        letter-spacing: 0.02em;
 
         &:focus {
             outline: none;
@@ -80,6 +84,7 @@ $btn-color: #686DF1;
         border-radius: 20px;
         color: $form-color;
         @include typography.ubuntu-700;
+        font-size: 16px;
 
         &::after {
             content: '';

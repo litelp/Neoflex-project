@@ -5,7 +5,8 @@ $text-color: #1C1C1E;
 
 .map {
     &__title {
-        line-height: 50px;
+        margin: 0 73px 10px 0;
+        line-height: 45px;
         letter-spacing: 0;
         font-size: 30px;
         color: $title-color;
@@ -13,11 +14,15 @@ $text-color: #1C1C1E;
     }
 
     &__text {
+        margin:0 104px 40px 0;
         line-height: 50px;
         letter-spacing: 0;
-        margin: 8px 0 48px 0;
         font-size: 16px;
         color: $text-color;
         @include typography.ubuntu-500;
+    }
+
+    &__image {
+        margin-right: 41px;
     }
 }

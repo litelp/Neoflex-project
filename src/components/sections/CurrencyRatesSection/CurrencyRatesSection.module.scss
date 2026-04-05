@@ -14,6 +14,7 @@ $bg-color: #f4f4f4e5;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     text-align: left;
+    letter-spacing: 0;
     @include typography.ubuntu-500;
     color: $main-color;
     background-color: $bg-color;
@@ -25,7 +26,6 @@ $bg-color: #f4f4f4e5;
         position: absolute;
         right: 32px;
         top: 161px;
-        transform: translateY(-30%);
         width: 120px;
         height: 113px;
         background: url(@/assets/images/bank.svg) no-repeat center / contain;
@@ -35,7 +35,8 @@ $bg-color: #f4f4f4e5;
         margin: 0 0 24px 0;
         font-size: 30px;
         @include typography.ubuntu-500;
-        letter-spacing: 0.01em;
+        line-height: 50px;
+        letter-spacing: 0;
         color: $title-color;
     }
 
@@ -43,6 +44,7 @@ $bg-color: #f4f4f4e5;
         margin: 0;
         font-size: 20px;
         @include typography.ubuntu-500;
+        line-height: 50px;
     }
 
     &__list {
@@ -51,26 +53,31 @@ $bg-color: #f4f4f4e5;
         list-style-type: none;
         grid-column: 1;
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 32px;
+        grid-template-columns: repeat(3, max-content);
+        gap: 30px;
         @include typography.ubuntu-700;
         font-size: 20px;
+        letter-spacing: 0.02em;
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 20px;
     }
 
     &__name {
         color: $currency-name-color;
     }
 
-    &__value {
-        margin-left: 20px;
-    }
-
-    &__link {
+    &__all-courses-link {
         grid-column: 1;
         font-size: 20px;
         color: $link-color;
         text-decoration: none;
         @include typography.ubuntu-700;
+        letter-spacing: 0.02em;
 
         &:hover {
             cursor: pointer;
@@ -80,6 +87,8 @@ $bg-color: #f4f4f4e5;
     &__date {
         grid-column: 2;
         text-align: end;
+        line-height: 50px;
         font-size: 16px;
+        letter-spacing: 0;
     }
 }
