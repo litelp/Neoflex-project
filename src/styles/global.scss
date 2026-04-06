@@ -3,4 +3,8 @@ $bg-color: #F5F4FF;
 body {
     margin: 0;
     background-color: $bg-color;
+
+    &.menu-open {
+        overflow: hidden;
+    }
 }
