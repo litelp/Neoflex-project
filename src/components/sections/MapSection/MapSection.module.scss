@@ -4,8 +4,12 @@ $title-color: #1C1C1C;
 $text-color: #1C1C1E;
 
 .map {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     &__title {
-        margin: 0 73px 10px 0;
+        margin: 0 0 8px 0;
         line-height: 45px;
         letter-spacing: 0;
         font-size: 30px;
@@ -14,7 +18,7 @@ $text-color: #1C1C1E;
     }
 
     &__text {
-        margin:0 104px 40px 0;
+        margin: 0;
         line-height: 50px;
         letter-spacing: 0;
         font-size: 16px;
@@ -23,6 +27,33 @@ $text-color: #1C1C1E;
     }
 
     &__image {
-        margin-right: 41px;
+       margin-top: 48px;
+    }
+}
+
+@media (max-width: 1728px) and (min-width: 1300px) {
+    .map {
+        &__image {
+            width: calc(797px + (1060px - 797px) * ((100vw - 1300px) / (1728px - 1300px)));
+        }
+    }
+}
+
+@media (max-width: 1300px) and (min-width: 920px) {
+    .map {
+        &__title {
+            font-size: 23px;
+            line-height: 38px;
+        }
+
+        &__image {
+            width: 797px;
+        }
+
+        &__text {
+            margin: 6px 0 36px 0;
+            font-size: 12px;
+            line-height: 38px;
+        }
     }
 }

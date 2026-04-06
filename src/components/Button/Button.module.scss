@@ -1,9 +1,24 @@
+@use '@/styles/mixins/typography' as typography;
+
 $btn-bg-color: #003CFF;
 $btn-text-color: #FFFFFF;
 
 .button {
-    font: 700 16px 'Ubuntu';
+    @include typography.ubuntu-700;
+    font-size: 16px;
     background-color: $btn-bg-color;
     color: $btn-text-color;
     border: none;
+}
+
+@media (max-width: 1728px) and (min-width: 1300px) {
+    .button {
+        font-size: calc(12px + (16px - 12px) * ((100vw - 1300px) / (1728px - 1300px)));
+    }
+}
+
+@media (max-width: 1300px) and (min-width: 920px) {
+    .button {
+        font-size: 12px;
+    }
 }

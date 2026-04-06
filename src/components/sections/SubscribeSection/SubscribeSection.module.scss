@@ -8,6 +8,9 @@ $btn-color: #686DF1;
 
 .subscribe {
     margin: 64px 0 98px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     @include typography.ubuntu-700;
     color: $text-color;
 
@@ -24,6 +27,7 @@ $btn-color: #686DF1;
         font-size: 30px;
         letter-spacing: 0.02em;
         line-height: 1.2em;
+        text-align: center;
     }
 
     &__subtitle {
@@ -37,7 +41,7 @@ $btn-color: #686DF1;
 
     &__form {
         max-width: 423px;
-        margin: 62px auto 0 396px;
+        // margin: 62px auto 0 396px;
         padding: 22px 32px 22px 70px;
         display: flex;
         align-items: center;
@@ -58,6 +62,7 @@ $btn-color: #686DF1;
             left: -37px;
             top: -6px;
             background-image: url(@assets/images/email.svg);
+            background-size: cover;
         }
     }
 
@@ -94,11 +99,69 @@ $btn-color: #686DF1;
             left: 14px;
             top: 0;
             background-image: url(@/assets/images/send.svg);
+            background-size: cover;
         }
 
         &:hover {
             cursor: pointer;
             box-shadow: 0px 10px 20px 0px rgba(54, 58, 120, 0.1019607843);
+        }
+    }
+}
+
+@media (max-width: 1728px) and (min-width: 1300px) {
+    .subscribe {
+        &__form {
+            width: calc(395px + (423px - 395px) * ((100vw - 1300px) / (1728px - 1300px)));
+        }
+    }
+}
+
+@media (max-width: 1300px) and (min-width: 920px) {
+    .subscribe {
+        margin: 48px 0 74px 0;
+
+        &__support-link {
+            font-size: 18px;
+        }
+
+        &__title {
+            margin: 23px 0 47px 23px;
+            font-size: 23px;
+        }
+
+        &__subtitle {
+            margin-top: 20px;
+            font-size: 23px;
+        }
+
+        &__form {
+            max-width: 395px;
+            padding: 16px 24px 16px 52px;
+        }
+
+        &__field {
+            &::before {
+                max-width: 21px;
+                max-height: 28px;
+                left: -28px;
+                top: -4px;
+            }
+        }
+
+        &__input {
+            font-size: 15px;
+        }
+
+        &__button {
+            width: 121px;
+            height: 34px;
+            padding: 10px 23px 10px 41px;
+            font-size: 12px;
+
+            &::after {
+                max-height: 30px;
+            }
         }
     }
 }

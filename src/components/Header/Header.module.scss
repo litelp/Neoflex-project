@@ -2,16 +2,21 @@
 
 $logo-color: #B4387A;
 $nav-color: #1D1929;
+$bg-color: #F5F4FF;
 $shadow: 0px 4px 24px #00000014;
 $shadow-2: 0px 2px 4px #00000014;
 
 .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
     padding: 7px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     letter-spacing: 0.02em;
     @include typography.ubuntu-700;
+    background: $bg-color;
 
     & a {
         text-decoration: none;
@@ -42,5 +47,44 @@ $shadow-2: 0px 2px 4px #00000014;
         height: 50px;
         border-radius: 16px;
         box-shadow: $shadow-2, $shadow;
+    }
+}
+
+@media (max-width: 1728px) and (min-width: 1300px) {
+    .header {
+        &__title {
+            font-size: calc(18px + (24px - 18px) * ((100vw - 1300px) / (1728px - 1300px)));
+        }
+
+        &__nav-link {
+            font-size: calc(12px + (16px - 12px) * ((100vw - 1300px) / (1728px - 1300px)));
+        }
+
+        &__button {
+            width: calc(97px + (128px - 97px) * ((100vw - 1300px) / (1728px - 1300px)));
+        }
+    }
+}
+
+@media (max-width: 1300px) and (min-width: 920px) {
+    .header {
+
+        &__title {
+            font-size: 18px;
+        }
+
+        &__list {
+            gap: 37px;
+        }
+
+        &__nav-link {
+            font-size: 12px;
+        }
+
+        &__button {
+            width: 97px;
+            height: 37px;
+            border-radius: 12px;
+        }
     }
 }

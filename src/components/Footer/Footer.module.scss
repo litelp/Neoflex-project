@@ -39,6 +39,7 @@ $separator-color : #FFFFFFCF;
         flex-direction: column;
         align-items: flex-start;
         gap: 8px;
+        font-style: normal
     }
 
     &__tel {
@@ -84,6 +85,34 @@ $separator-color : #FFFFFFCF;
             height: 2px;
             transform: translateY(-32px);
             background-color: $separator-color;
+        }
+    }
+}
+
+@media (max-width: 1728px) and (min-width: 1300px) {
+    .footer {
+        &__logo {
+            width: calc(119px + (158px - 119px) * ((100vw - 1300px) / (1728px - 1300px)));
+        }
+    }
+}
+
+@media (max-width: 1300px) and (min-width: 920px) {
+    .footer {
+        padding: 72px 161px 69px 161px;
+        font-size: 12px;
+
+        &__logo {
+            max-width: 119px;
+        }
+
+        &__tel {
+            font-size: 23px;
+        }
+
+        &__nav-list {
+            gap: 24px;
+            row-gap: 6px;
         }
     }
 }

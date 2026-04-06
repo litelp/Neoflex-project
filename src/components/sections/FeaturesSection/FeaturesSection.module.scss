@@ -11,6 +11,7 @@ $features-title-color: #0B132A;
     line-height: 30px;
 
     &__text {
+        margin-left: 56px;
         padding-top: 74px;
         text-align: left;
         @include typography.rubik-400;
@@ -53,6 +54,67 @@ $features-title-color: #0B132A;
             left: 2px;
             transform: translateY(15%);
             background-image: url('@/assets/images/Group1120.svg');
+            background-size: cover;
+        }
+    }
+}
+
+@media (max-width: 1728px) and (min-width: 1300px) {
+    .features {
+        &__icon {
+            width: calc(382px + (509px - 382px) * ((100vw - 1300px) / (1728px - 1300px)));
+        }
+
+        &__text {
+            padding-top: calc(49px + (74px - 49px) * ((100vw - 1300px) / (1728px - 1300px)));
+        }
+    }
+}
+
+@media (max-width: 1500px) {
+    .features {
+        &__title {
+            font-size: 30px;
+        }
+    }
+}
+
+@media (max-width: 1300px) and (min-width: 920px) {
+    .features {
+        line-height: 22px;
+
+        &__icon {
+            max-width: 382px;
+        }
+
+        &__text {
+            padding-top: 49px;
+        }
+
+        &__title {
+            margin: 0 0 15px 0;
+            line-height: 37px;
+            font-size: 26px;
+        }
+
+        &__paragraph {
+            font-size: 12px;
+        }
+
+        &__list {
+            margin-top: 18px;
+            font-size: 11px;
+        }
+
+        &__item {
+            margin-bottom: 8px;
+            padding-left: 31px;
+
+            &::before {
+                width: 18px;
+                height: 18px;
+                transform: translateY(30%);
+            }
         }
     }
 }

@@ -6,7 +6,7 @@ $text-color: #1C1C1E;
     margin: 131px 0 112px 0;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: auto auto;
     @include typography.ubuntu-700;
 
     &__title {
@@ -20,7 +20,7 @@ $text-color: #1C1C1E;
     }
 
     &__button {
-        width: 160px;
+        max-width: 160px;
         height: 50px;
         margin-top: 30px;
         grid-row: 2;
@@ -41,7 +41,55 @@ $text-color: #1C1C1E;
         list-style-type: none;
     }
 
+    &__card {
+        width: calc(190px + (253px - 190px) * ((100vw - 1300px) / (1728px - 1300px)));
+    }
+
     &__card img {
+        width: 100%;
+        height: auto;
         display: block;
+    }
+}
+
+@media (max-width: 1728px) and (min-width: 1300px) {
+    .choose {
+        &__button {
+            width: calc(120px + (160px - 120px) * ((100vw - 1300px) / (1728px - 1300px)));
+        }
+    }
+}
+
+@media (max-width: 1500px) {
+    .choose {
+        margin: 114px 0 99px 0;
+
+        &__title {
+            font-size: 36px;
+        }
+    }
+
+}
+
+@media (max-width: 1300px) and (min-width: 920px) {
+    .choose {
+        &__title {
+            max-width: 458px;
+            line-height: 37px;
+        }
+
+        &__button {
+            width: 120px;
+            height: 37px;
+            border-radius: 12px;
+        }
+
+        &__list {
+            gap: 12px;
+        }
+
+        &__card {
+            width: calc(190px + (253px - 190px) * ((100vw - 1300px) / (1728px - 1300px)));
+        }
     }
 }

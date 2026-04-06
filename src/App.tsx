@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <div className={styles.app}>
-        <Header></Header>
+        <Header />
         <HomePage />
       </div>
       <Footer></Footer>

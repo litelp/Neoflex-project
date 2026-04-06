@@ -133,3 +133,48 @@ $bg-color: #f4f4f4e5;
       box-shadow: 1px 5px 2px #467b48;
     }
   }
+
+  @media (max-width: 1728px) and (min-width: 1300px) {
+    .currency {
+        &::after {
+            width: calc(120px + (190px - 120px) * ((100vw - 1300px) / (1728px - 1300px)));
+        }
+    }
+  }
+
+  @media (max-width: 1300px) and (min-width: 920px) {
+    .currency {
+        margin: 36px 0;
+
+        &::after {
+            width: 90px;
+            height: 85px;
+            top: 121px;
+        }
+
+        &__title {
+            margin-bottom: 18px;
+            font-size: 23px;
+            line-height: 37px;
+        }
+
+        &__subtitle {
+            font-size: 15px;
+            line-height: 37px;
+        }
+
+        &__list {
+            margin: 24px 0 38px 0;
+            font-size: 15px;
+        }
+
+        &__all-courses-link {
+            font-size: 15px;
+        }
+
+        &__date {
+            font-size: 12px;
+            line-height: 37px;
+        }
+    }
+  }
