@@ -8,9 +8,12 @@ const MINUTES = 15;
 const SECONDS = 60;
 const MILLISECONDS = 1000;
 
-const TIME_ZONE = 'MSC';
+const TIME_ZONE = 'MSK';
 
-function getDate(date: Date, zone: string): { dateTime: string; text: string } {
+function formatDate(
+  date: Date,
+  zone: string
+): { dateTime: string; text: string } {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
@@ -24,26 +27,35 @@ function getDate(date: Date, zone: string): { dateTime: string; text: string } {
 export function CurrencyRatesSection() {
   const [rates, setRates] = useState<RequiredRates | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [isloading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [date, setDate] = useState<Date | null>(null);
 
   useEffect(() => {
+    let isMounted = true;
+
     async function getCurrencies() {
       try {
         const data = await getRequiredRates();
+
+        if (!isMounted) return;
 
         setRates(data);
         setDate(new Date());
         setError(null);
       } catch {
+        if (!isMounted) return;
+
         setError('Error loading currency rates');
         setRates(null);
       } finally {
-        setIsLoading(false);
+        if (isMounted) {
+          setIsLoading(false);
+        }
       }
     }
 
     getCurrencies();
+
     const intervalId = window.setInterval(
       () => {
         getCurrencies();
@@ -52,11 +64,12 @@ export function CurrencyRatesSection() {
     );
 
     return () => {
+      isMounted = false;
       window.clearInterval(intervalId);
     };
   }, []);
 
-  const currentDate = date ? getDate(date, TIME_ZONE) : null;
+  const currentDate = date ? formatDate(date, TIME_ZONE) : null;
 
   return (
     <section className={styles.currency}>
@@ -73,14 +86,16 @@ export function CurrencyRatesSection() {
       )}
 
       <h3 className={styles['currency__subtitle']}>Currency</h3>
-      {isloading ? (
+      {isLoading ? (
         <div
-          role="loading"
+          role="status"
           className={styles['currency__loader']}
           aria-label="Loading currency rates"
         />
       ) : error ? (
-        <p className={styles['currency__error']}>{error}</p>
+        <p className={styles['currency__error']} role="alert">
+          {error}
+        </p>
       ) : (
         <ul className={styles['currency__list']}>
           {Object.entries(rates ?? {}).map(([currency, value]) => (
@@ -91,6 +106,7 @@ export function CurrencyRatesSection() {
           ))}
         </ul>
       )}
+
       <Link className={styles['currency__all-courses-link']} to="/">
         All courses
       </Link>

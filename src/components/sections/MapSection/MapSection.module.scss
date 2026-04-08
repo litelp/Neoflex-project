@@ -30,7 +30,7 @@ $text-color: #1C1C1E;
         display: block;
         width: 1060px;
         height: auto;
-       margin-top: 48px;
+        margin-top: 48px;
     }
 }
 
@@ -62,11 +62,7 @@ $text-color: #1C1C1E;
             font-size: 12px;
             line-height: 38px;
         }
-    }
-}
 
-@media (max-width: 1024px) {
-    .map {
         &__image {
             margin: 0;
         }
