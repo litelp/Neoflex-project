@@ -1,4 +1,4 @@
-export interface iExchangeRateApiResponse {
+export interface ExchangeRateApiResponse {
   result: string;
   base_code: string;
   conversion_rates: Record<string, number>;

@@ -2,6 +2,7 @@
 
 $btn-bg-color: #003CFF;
 $btn-text-color: #FFFFFF;
+$btn-color-hover: #7796C0;
 
 .button {
     @include typography.ubuntu-700;
@@ -9,6 +10,23 @@ $btn-text-color: #FFFFFF;
     background-color: $btn-bg-color;
     color: $btn-text-color;
     border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: $btn-color-hover;
+    }
+
+    &:focus-visible {
+        outline: 2px solid #1D1929;
+        outline-offset: 2px;
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.6;
+        background-color: $btn-color-hover;
+    }
 }
 
 @media (max-width: 1728px) and (min-width: 1300px) {

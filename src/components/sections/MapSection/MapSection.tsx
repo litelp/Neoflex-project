@@ -10,7 +10,11 @@ export function MapSection() {
       <p className={styles['map__text']}>
         Withdraw and transfer money online through our application
       </p>
-      <img className={styles['map__image']} src={map} alt="map" />
+      <img
+        className={styles['map__image']}
+        src={map}
+        alt="World map showing where services are available"
+      />
     </section>
   );
 }

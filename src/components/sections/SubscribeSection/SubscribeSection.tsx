@@ -19,7 +19,7 @@ export function SubscribeSection() {
         <span className={styles['subscribe__subtitle']}>Bank News</span>
       </h2>
       <form className={styles['subscribe__form']} onSubmit={handleSubmit}>
-        <label className={styles['subscribe__field']} htmlFor="email">
+        <label className={styles['subscribe__field']} htmlFor="subscribe-email">
           <input
             className={styles['subscribe__input']}
             value={value}
@@ -28,7 +28,6 @@ export function SubscribeSection() {
             id="email"
             placeholder="Your email"
             autoComplete="email"
-            aria-label="Email"
             onChange={(e) => setValue(e.target.value)}
           />
         </label>

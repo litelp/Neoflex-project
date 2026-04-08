@@ -2,7 +2,7 @@ import axios from 'axios';
 import type {
   RequiredCurrencyCode,
   RequiredRates,
-  iExchangeRateApiResponse,
+  ExchangeRateApiResponse,
 } from '@/types/exchangeRate';
 
 const BASE_URL = import.meta.env.VITE_EXCHANGE_RATE_BASE_URL;
@@ -34,9 +34,9 @@ export async function getRequiredRates(): Promise<RequiredRates> {
 }
 
 async function getRates(): Promise<Record<string, number>> {
-  const responce = await axios.get<iExchangeRateApiResponse>(
+  const response = await axios.get<ExchangeRateApiResponse>(
     `${BASE_URL}/${API_KEY}/latest/${BASE_CURRENCY}`
   );
 
-  return responce.data.conversion_rates;
+  return response.data.conversion_rates;
 }

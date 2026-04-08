@@ -8,9 +8,20 @@
     }
 }
 
-@media (max-width: 1300px) and (min-width: 920px) {
+@media (max-width: 1300px) {
     .app {
         padding: 0 161px;
     }
 }
 
+@media (max-width: 920px) and (min-width: 500px) {
+    .app {
+        padding: 0 calc(20px + (161px - 20px) * ((100vw - 500px) / (920px - 500px)));
+    }
+}
+
+@media (max-width: 500px) {
+    .app {
+        padding: 0 20px;
+    }
+}

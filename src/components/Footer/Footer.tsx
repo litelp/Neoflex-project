@@ -9,7 +9,7 @@ export function Footer() {
         <img
           className={styles['footer__logo']}
           src={logoNeoflex}
-          alt="logo_Neoflex"
+          alt="Neoflex"
         />
         <address className={styles['footer__contact']}>
           <a className={styles['footer__tel']} href="tel:+74959842513">
@@ -20,7 +20,7 @@ export function Footer() {
           </a>
         </address>
       </div>
-      <nav className={styles['footer__nav']}>
+      <nav className={styles['footer__nav']} aria-label="Footer navigation">
         <ul className={styles['footer__nav-list']}>
           <li>
             <Link className={styles['footer__nav-item']} to="/">

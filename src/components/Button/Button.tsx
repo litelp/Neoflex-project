@@ -1,7 +1,7 @@
-import type React from 'react';
+import type { ButtonHTMLAttributes } from 'react';
 import styles from './Button.module.scss';
 
-interface iButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
   className?: string;
 }
@@ -11,12 +11,12 @@ export function Button({
   className = '',
   type = 'button',
   ...props
-}: iButtonProps) {
+}: ButtonProps) {
   return (
     <button
+      {...props}
       type={type}
       className={`${styles.button} ${className}`.trim()}
-      {...props}
     >
       {text}
     </button>

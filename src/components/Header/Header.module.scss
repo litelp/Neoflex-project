@@ -2,6 +2,7 @@
 
 $logo-color: #B4387A;
 $nav-color: #1D1929;
+$nav-hover-color: #5f5b6a;
 $bg-color: #F5F4FF;
 $bg-overlay: #1d192959;
 $shadow: 0px 4px 24px #00000014;
@@ -11,7 +12,7 @@ $shadow-2: 0px 2px 4px #00000014;
     position: sticky;
     top: 0;
     z-index: 100;
-    padding: 7px 0;
+    padding: 7px 214px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -24,7 +25,8 @@ $shadow-2: 0px 2px 4px #00000014;
         display: none;
     }
 
-    & a {
+    &__title,
+    &__nav-link {
         text-decoration: none;
     }
 
@@ -32,6 +34,11 @@ $shadow-2: 0px 2px 4px #00000014;
         color: $logo-color;
         font-size: 24px;
         text-shadow: $shadow-2, $shadow;
+
+        &:focus-visible {
+            outline: 2px solid $nav-color;
+            outline-offset: 2px;
+        }
     }
 
     &__list {
@@ -46,6 +53,15 @@ $shadow-2: 0px 2px 4px #00000014;
         color: $nav-color;
         font-size: 16px;
         text-shadow: $shadow-2, $shadow;
+
+        &:hover {
+            color: $nav-hover-color;
+        }
+
+        &:focus-visible {
+            outline: 2px solid $nav-color;
+            outline-offset: 2px;
+        }
     }
 
     &__button {
@@ -64,9 +80,11 @@ $shadow-2: 0px 2px 4px #00000014;
         position: relative;
         border: none;
         cursor: pointer;
+        background: transparent;
 
         & span {
             position: absolute;
+            display: block;
             width: 24px;
             height: 2px;
             right: 8px;
@@ -120,8 +138,16 @@ $shadow-2: 0px 2px 4px #00000014;
     }
 }
 
-@media (max-width: 1300px) and (min-width: 921px) {
+@media (max-width: 1500px) {
     .header {
+        padding: 7px 190px;
+    }
+}
+
+@media (max-width: 1300px) {
+    .header {
+        padding: 7px 161px;
+
         &__title {
             font-size: 18px;
         }
@@ -182,13 +208,13 @@ $shadow-2: 0px 2px 4px #00000014;
             z-index: 103;
             grid-column: 2 / 3;
             grid-row: 1 / 2;
-            background: transparent;
         }
 
         &__navbar {
             display: none;
             grid-column: 1 / -1;
             grid-row: 2 / 3;
+            gap: 30px;
         }
 
         &__navbar--open {
@@ -200,7 +226,11 @@ $shadow-2: 0px 2px 4px #00000014;
         &__list {
             flex-direction: column;
             align-items: center;
-            gap: 20px;
+            gap: 30px;
+        }
+
+        &__nav-link {
+            font-size: 20px;
         }
 
         &__button-in-burger {
@@ -211,13 +241,13 @@ $shadow-2: 0px 2px 4px #00000014;
             border-radius: 16px;
             box-shadow: $shadow-2, $shadow;
         }
-    }
 
-    .header--open {
-        box-shadow: $shadow-2, $shadow;
-        width: 100%;
-        height: 100vh;
-        left: auto;
-        right: 0;
+        &--open {
+            box-shadow: $shadow-2, $shadow;
+            width: 90%;
+            height: 100vh;
+            left: auto;
+            right: 0;
+        }
     }
 }

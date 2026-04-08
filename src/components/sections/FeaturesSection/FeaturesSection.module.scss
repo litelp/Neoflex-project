@@ -7,8 +7,14 @@ $features-title-color: #0B132A;
     display: flex;
     justify-content: space-between;
     color: $features-color;
-    letter-spacing: 0%;
+    letter-spacing: 0;
     line-height: 30px;
+
+    &__icon {
+        display: block;
+        width: 509px;
+        height: auto;
+    }
 
     &__text {
         margin-left: 56px;
@@ -18,7 +24,7 @@ $features-title-color: #0B132A;
     }
 
     &__title {
-        margin-bottom: 20px;
+        margin: 0 0 20px 0;
         @include typography.rubik-500;
         font-size: 35px;
         color: $features-title-color;
@@ -27,23 +33,21 @@ $features-title-color: #0B132A;
     }
 
     &__paragraph {
+        margin: 0;
         font-size: 16px;
-        line-height: 30px;
     }
 
     &__list {
-        margin-top: 25px;
+        margin: 25px 0 0;
         padding: 0;
         list-style-type: none;
         font-size: 14px;
-        line-height: 30px;
     }
 
     &__item {
         margin-bottom: 12px;
         position: relative;
         padding-left: 42px;
-        line-height: 30px;
         letter-spacing: 0;
 
         &::before {
@@ -52,9 +56,11 @@ $features-title-color: #0B132A;
             height: 24px;
             position: absolute;
             left: 2px;
-            transform: translateY(15%);
+            top: 3px;
             background-image: url('@/assets/images/Group1120.svg');
-            background-size: cover;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
         }
     }
 }
@@ -64,32 +70,32 @@ $features-title-color: #0B132A;
         &__icon {
             width: calc(382px + (509px - 382px) * ((100vw - 1300px) / (1728px - 1300px)));
         }
-
-        &__text {
-            padding-top: calc(49px + (74px - 49px) * ((100vw - 1300px) / (1728px - 1300px)));
-        }
     }
 }
 
 @media (max-width: 1500px) {
     .features {
+        &__text {
+            padding-top: 57px;
+        }
+
         &__title {
             font-size: 30px;
         }
     }
 }
 
-@media (max-width: 1300px) and (min-width: 920px) {
+@media (max-width: 1300px) and (min-width: 921px) {
+    .features {
+        &__icon {
+            width: calc(330px + (382px - 330px) * ((100vw - 920px) / (1300px - 920px)));
+        }
+    }
+}
+
+@media (max-width: 1300px) {
     .features {
         line-height: 22px;
-
-        &__icon {
-            max-width: 382px;
-        }
-
-        &__text {
-            padding-top: 49px;
-        }
 
         &__title {
             margin: 0 0 15px 0;
@@ -98,7 +104,8 @@ $features-title-color: #0B132A;
         }
 
         &__paragraph {
-            font-size: 12px;
+            margin: 0;
+            font-size: 11px;
         }
 
         &__list {
@@ -113,8 +120,54 @@ $features-title-color: #0B132A;
             &::before {
                 width: 18px;
                 height: 18px;
-                transform: translateY(30%);
+                top: 2px;
             }
+        }
+    }
+}
+
+@media (max-width: 920px) {
+    .features {
+        &__icon {
+            display: none;
+        }
+
+        &__text {
+            margin-left: 0;
+            padding-top: 0;
+        }
+
+        &__title {
+            line-height: 26px;
+        }
+
+        &__item {
+            margin-bottom: 0;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .features {
+        &__title {
+            margin: 0 35px 30px;
+            text-align: center;
+            line-height: 37px;
+        }
+
+        &__paragraph {
+            text-align: center;
+            font-size: 16px;
+            line-height: 26px;
+        }
+
+        &__list {
+            width: fit-content;
+            margin: 30px auto 0;
+        }
+
+        &__item {
+            font-size: 15px;
         }
     }
 }

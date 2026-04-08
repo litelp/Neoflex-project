@@ -19,7 +19,7 @@ $btn-color: #686DF1;
         text-decoration: none;
         font-size: 24px;
         color: $link-color;
-        line-height: 0;
+        line-height: 1.47em;
     }
 
     &__title {
@@ -40,8 +40,7 @@ $btn-color: #686DF1;
     }
 
     &__form {
-        max-width: 423px;
-        // margin: 62px auto 0 396px;
+        width: 423px;
         padding: 22px 32px 22px 70px;
         display: flex;
         align-items: center;
@@ -61,8 +60,10 @@ $btn-color: #686DF1;
             height: 37px;
             left: -37px;
             top: -6px;
-            background-image: url(@assets/images/email.svg);
+            background-image: url(@/assets/images/email.svg);
             background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
         }
     }
 
@@ -74,8 +75,9 @@ $btn-color: #686DF1;
         @include typography.nunito-sans-400;
         letter-spacing: 0.02em;
 
-        &:focus {
-            outline: none;
+        &:focus-visible {
+            outline: 2px solid $input-color;
+            outline-offset: 2px;
         }
     }
 
@@ -90,6 +92,7 @@ $btn-color: #686DF1;
         color: $form-color;
         @include typography.ubuntu-700;
         font-size: 16px;
+        line-height: 1.27px;
 
         &::after {
             content: '';
@@ -100,6 +103,8 @@ $btn-color: #686DF1;
             top: 0;
             background-image: url(@/assets/images/send.svg);
             background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
         }
 
         &:hover {
@@ -109,15 +114,7 @@ $btn-color: #686DF1;
     }
 }
 
-@media (max-width: 1728px) and (min-width: 1300px) {
-    .subscribe {
-        &__form {
-            width: calc(395px + (423px - 395px) * ((100vw - 1300px) / (1728px - 1300px)));
-        }
-    }
-}
-
-@media (max-width: 1300px) and (min-width: 920px) {
+@media (max-width: 1300px) {
     .subscribe {
         margin: 48px 0 74px 0;
 
@@ -136,14 +133,16 @@ $btn-color: #686DF1;
         }
 
         &__form {
-            max-width: 395px;
+            width: 395px;
             padding: 16px 24px 16px 52px;
+            border-radius: 15px;
+            box-sizing: border-box;
         }
 
         &__field {
             &::before {
-                max-width: 21px;
-                max-height: 28px;
+                width: 21px;
+                height: 28px;
                 left: -28px;
                 top: -4px;
             }
@@ -162,6 +161,14 @@ $btn-color: #686DF1;
             &::after {
                 max-height: 30px;
             }
+        }
+    }
+}
+
+@media (max-width: 920px) {
+    .subscribe {
+        &__form {
+            width: 365px;
         }
     }
 }

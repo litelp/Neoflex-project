@@ -26,7 +26,7 @@ $bg-color: #f4f4f4e5;
         position: absolute;
         right: 32px;
         top: 161px;
-        width: 120px;
+        width: 190px;
         height: 113px;
         background: url(@/assets/images/bank.svg) no-repeat center / contain;
     }
@@ -48,6 +48,7 @@ $bg-color: #f4f4f4e5;
     }
 
     &__loader {
+        position: relative;
         width: 60px;
         height: 60px;
         margin: 32px 0 51px 0;
@@ -106,7 +107,12 @@ $bg-color: #f4f4f4e5;
         letter-spacing: 0.02em;
 
         &:hover {
-            cursor: pointer;
+            color: $currency-name-color;
+        }
+
+        &:focus-visible {
+            outline: 2px solid $main-color;
+            outline-offset: 2px;
         }
     }
 
@@ -132,17 +138,25 @@ $bg-color: #f4f4f4e5;
       transform: rotate(360deg);
       box-shadow: 1px 5px 2px #467b48;
     }
+}
+
+@media (max-width: 1728px) and (min-width: 1300px) {
+    .currency {
+      &::after {
+        width: calc(90px + (190px - 90px) * ((100vw - 1300px) / (1728px - 1300px)));
+      }
+    }
   }
 
-  @media (max-width: 1728px) and (min-width: 1300px) {
+  @media (max-width: 1500px) {
     .currency {
-        &::after {
-            width: calc(120px + (190px - 120px) * ((100vw - 1300px) / (1728px - 1300px)));
+        &__title {
+            font-size: 26px;
         }
     }
   }
 
-  @media (max-width: 1300px) and (min-width: 920px) {
+  @media (max-width: 1300px) {
     .currency {
         margin: 36px 0;
 
@@ -178,3 +192,75 @@ $bg-color: #f4f4f4e5;
         }
     }
   }
+
+  @media (max-width: 1024px) {
+    .currency {
+        &__title {
+            font-size: 20px;
+        }
+
+        &__list {
+            font-size: 12px;
+        }
+
+        &__date {
+            font-size: 10px;
+        }
+    }
+  }
+
+@media (max-width: 920px) {
+    .currency {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto auto;
+        justify-items: start;
+
+        &::after {
+            content: none;
+        }
+
+        &__title {
+            margin-bottom: 0;
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        &__date {
+            grid-column: 1;
+            grid-row: 2;
+        }
+
+        &__subtitle {
+            grid-column: 1;
+            grid-row: 3;
+        }
+
+        &__list,
+        &__loader,
+        &__error {
+            grid-column: 1;
+            grid-row: 4;
+            font-size: 18px;
+        }
+
+        &__all-courses-link {
+            grid-column: 1;
+            grid-row: 5;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .currency {
+        margin: 46px 0;
+
+        &__date {
+            font-size: 12px;
+        }
+
+        &__list {
+            grid-template-columns: repeat(2, 1fr);
+            width: 100%;
+        }
+    }
+}

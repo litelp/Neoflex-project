@@ -26,6 +26,31 @@ export function Header() {
     };
   }, [isMenuOpen]);
 
+  useEffect(() => {
+    function handleClose(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        setIsMenuOpen(false);
+      }
+    }
+
+    function handleResize() {
+      if (window.innerWidth > 920) {
+        setIsMenuOpen(false);
+      }
+    }
+
+    if (isMenuOpen) {
+      document.addEventListener('keydown', handleClose);
+    }
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      document.removeEventListener('keydown', handleClose);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [isMenuOpen]);
+
   return (
     <>
       {isMenuOpen && (
@@ -43,6 +68,7 @@ export function Header() {
           NeoBank
         </NavLink>
         <nav
+          id="header-navigation"
           className={`${styles['header__navbar']} ${isMenuOpen ? styles['header__navbar--open'] : ''}`}
         >
           <ul className={styles['header__list']}>
@@ -94,6 +120,8 @@ export function Header() {
           className={`${styles['header__burger']} ${isMenuOpen ? styles['header__burger--open'] : ''}`}
           type="button"
           aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={isMenuOpen}
+          aria-controls="header-navigation"
           onClick={toggleMenu}
         >
           <span></span>
