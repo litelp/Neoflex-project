@@ -1,17 +1,14 @@
-import styles from './App.module.scss';
-import { Footer } from '@components/Footer/Footer';
-import { Header } from '@/components/Header/Header';
-import { HomePage } from '@/components/pages/HomePage/HomePage';
+import { Route, Routes } from 'react-router-dom';
+import { Layout } from './Layout';
+import { HomePage } from './components/pages/HomePage/HomePage';
 
 function App() {
   return (
-    <>
-      <Header />
-      <main className={styles.app}>
-        <HomePage />
-      </main>
-      <Footer />
-    </>
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path="/" element={<HomePage />} />
+      </Route>
+    </Routes>
   );
 }
 
