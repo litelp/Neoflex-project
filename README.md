@@ -18,7 +18,7 @@ The application includes multiple sections such as a landing page with product f
 ### Features
 
 - Responsive layout (desktop 1300px → tablet 920px → mobile 500px)
-- Sticky/fixed header with burger menu
+- Sticky header with burger menu
 - Reusable UI components (Button, sections)
 - Currency rates fetching with auto-refresh (every 15 minutes)
 - Loader with animated spinner

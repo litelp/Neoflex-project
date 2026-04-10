@@ -1,25 +1,12 @@
 import axios from 'axios';
 import type {
-  RequiredCurrencyCode,
   RequiredRates,
   ExchangeRateApiResponse,
 } from '@/types/exchangeRate';
-
-const BASE_URL = import.meta.env.VITE_EXCHANGE_RATE_BASE_URL;
-const API_KEY = import.meta.env.VITE_EXCHANGE_RATE_API_KEY;
-
-const CURRENCIES: RequiredCurrencyCode[] = [
-  'USD',
-  'CNY',
-  'CHF',
-  'EUR',
-  'JPY',
-  'TRY',
-];
-const BASE_CURRENCY = 'RUB';
+import { API_KEY, BASE_URL, BASE_CURRENCY, CURRENCIES } from '@/constants';
 
 export async function getRequiredRates(): Promise<RequiredRates> {
-  const allCurrencies = await getRates();
+  const allCurrencies = await getAllRates();
   const data = {} as RequiredRates;
 
   for (let i = 0; i < CURRENCIES.length; i++) {
@@ -33,7 +20,7 @@ export async function getRequiredRates(): Promise<RequiredRates> {
   return data;
 }
 
-async function getRates(): Promise<Record<string, number>> {
+async function getAllRates(): Promise<Record<string, number>> {
   const response = await axios.get<ExchangeRateApiResponse>(
     `${BASE_URL}/${API_KEY}/latest/${BASE_CURRENCY}`
   );

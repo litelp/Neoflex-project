@@ -2,6 +2,14 @@ import styles from './Header.module.scss';
 import { NavLink } from 'react-router-dom';
 import { Button } from '../Button/Button';
 import { useEffect, useState } from 'react';
+import type { NavItem } from '@/types/navTypes';
+
+const HEADER_DATA: NavItem[] = [
+  { id: 'card', text: 'Credit card', link: '/' },
+  { id: 'product', text: 'Product', link: '/' },
+  { id: 'account', text: 'Account', link: '/' },
+  { id: 'resources', text: 'Resources', link: '/' },
+];
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -72,42 +80,17 @@ export function Header() {
           className={`${styles['header__navbar']} ${isMenuOpen ? styles['header__navbar--open'] : ''}`}
         >
           <ul className={styles['header__list']}>
-            <li>
-              <NavLink
-                className={styles['header__nav-link']}
-                to="/"
-                onClick={closeMenu}
-              >
-                Credit card
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className={styles['header__nav-link']}
-                to="/"
-                onClick={closeMenu}
-              >
-                Product
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className={styles['header__nav-link']}
-                to="/"
-                onClick={closeMenu}
-              >
-                Account
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className={styles['header__nav-link']}
-                to="/"
-                onClick={closeMenu}
-              >
-                Resources
-              </NavLink>
-            </li>
+            {HEADER_DATA.map((item) => (
+              <li key={item.id}>
+                <NavLink
+                  className={styles['header__nav-link']}
+                  to={item.link}
+                  onClick={closeMenu}
+                >
+                  {item.text}
+                </NavLink>
+              </li>
+            ))}
           </ul>
           <Button
             className={styles['header__button-in-burger']}

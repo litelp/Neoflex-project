@@ -1,6 +1,20 @@
 import styles from './Footer.module.scss';
 import { Link } from 'react-router-dom';
 import logoNeoflex from '@/assets/images/logo_Neoflex.svg';
+import type { NavItem } from '@/types/navTypes';
+
+const FOOTER_DATA: NavItem[] = [
+  { id: 'about', text: 'About bank', link: '/' },
+  { id: 'question', text: 'Ask a Question', link: '/' },
+  { id: 'quality', text: 'Quality of service', link: '/' },
+  { id: 'requisites', text: 'Requisites', link: '/' },
+  { id: 'press', text: 'Press center', link: '/' },
+  { id: 'career', text: 'Bank career', link: '/' },
+  { id: 'investors', text: 'Investors', link: '/' },
+  { id: 'analytics', text: 'Analytics', link: '/' },
+  { id: 'processes', text: 'Business and processes', link: '/' },
+  { id: 'compliance', text: 'Compliance and business ethics', link: '/' },
+];
 
 export function Footer() {
   return (
@@ -22,56 +36,13 @@ export function Footer() {
       </div>
       <nav className={styles['footer__nav']} aria-label="Footer navigation">
         <ul className={styles['footer__nav-list']}>
-          <li>
-            <Link className={styles['footer__nav-item']} to="/">
-              About bank
-            </Link>
-          </li>
-          <li>
-            <Link className={styles['footer__nav-item']} to="/">
-              Ask a Question
-            </Link>
-          </li>
-          <li>
-            <Link className={styles['footer__nav-item']} to="/">
-              Quality of service
-            </Link>
-          </li>
-          <li>
-            <Link className={styles['footer__nav-item']} to="/">
-              Requisites
-            </Link>
-          </li>
-          <li>
-            <Link className={styles['footer__nav-item']} to="/">
-              Press center
-            </Link>
-          </li>
-          <li>
-            <Link className={styles['footer__nav-item']} to="/">
-              Bank career
-            </Link>
-          </li>
-          <li>
-            <Link className={styles['footer__nav-item']} to="/">
-              Investors
-            </Link>
-          </li>
-          <li>
-            <Link className={styles['footer__nav-item']} to="/">
-              Analytics
-            </Link>
-          </li>
-          <li>
-            <Link className={styles['footer__nav-item']} to="/">
-              Business and processes
-            </Link>
-          </li>
-          <li>
-            <Link className={styles['footer__nav-item']} to="/">
-              Compliance and business ethics
-            </Link>
-          </li>
+          {FOOTER_DATA.map((item) => (
+            <li key={item.id}>
+              <Link className={styles['footer__nav-item']} to={item.link}>
+                {item.text}
+              </Link>
+            </li>
+          ))}
         </ul>
       </nav>
       <p className={styles['footer__text']}>

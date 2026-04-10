@@ -25,7 +25,7 @@ export function SubscribeSection() {
             value={value}
             type="email"
             name="email"
-            id="email"
+            id="subscribe-email"
             placeholder="Your email"
             autoComplete="email"
             onChange={(e) => setValue(e.target.value)}

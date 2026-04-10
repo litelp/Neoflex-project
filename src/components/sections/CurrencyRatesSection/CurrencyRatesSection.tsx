@@ -3,6 +3,7 @@ import styles from './CurrencyRatesSection.module.scss';
 import { Link } from 'react-router-dom';
 import { getRequiredRates } from '@/utils/exchangeRateApi';
 import type { RequiredRates } from '@/types/exchangeRate';
+import { formatDate } from '@/utils/formatDate';
 
 const MINUTES = 15;
 const SECONDS = 60;
@@ -10,61 +11,49 @@ const MILLISECONDS = 1000;
 
 const TIME_ZONE = 'MSK';
 
-function formatDate(
-  date: Date,
-  zone: string
-): { dateTime: string; text: string } {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-
-  return {
-    dateTime: `${year}-${month}-${day}`,
-    text: `Update every 15 minutes, ${zone} ${day}.${month}.${year}`,
-  };
-}
-
 export function CurrencyRatesSection() {
   const [rates, setRates] = useState<RequiredRates | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [date, setDate] = useState<Date | null>(null);
 
-  useEffect(() => {
-    let isMounted = true;
+  async function getCurrencies(isMounted: () => boolean) {
+    try {
+      const data = await getRequiredRates();
 
-    async function getCurrencies() {
-      try {
-        const data = await getRequiredRates();
+      if (!isMounted()) return;
 
-        if (!isMounted) return;
+      setRates(data);
+      setDate(new Date());
+      setError(null);
+    } catch {
+      if (!isMounted()) return;
 
-        setRates(data);
-        setDate(new Date());
-        setError(null);
-      } catch {
-        if (!isMounted) return;
-
-        setError('Error loading currency rates');
-        setRates(null);
-      } finally {
-        if (isMounted) {
-          setIsLoading(false);
-        }
+      setError('Error loading currency rates');
+      setRates(null);
+    } finally {
+      if (isMounted()) {
+        setIsLoading(false);
       }
     }
+  }
 
-    getCurrencies();
+  useEffect(() => {
+    let mounted = true;
+
+    const isMounted = () => mounted;
+
+    getCurrencies(isMounted);
 
     const intervalId = window.setInterval(
       () => {
-        getCurrencies();
+        getCurrencies(isMounted);
       },
       MINUTES * SECONDS * MILLISECONDS
     );
 
     return () => {
-      isMounted = false;
+      mounted = false;
       window.clearInterval(intervalId);
     };
   }, []);
