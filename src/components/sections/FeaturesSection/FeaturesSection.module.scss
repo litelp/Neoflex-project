@@ -1,0 +1,173 @@
+@use '@/styles/mixins/typography' as typography;
+
+$features-color: #4F5665;
+$features-title-color: #0B132A;
+
+.features {
+    display: flex;
+    justify-content: space-between;
+    color: $features-color;
+    letter-spacing: 0;
+    line-height: 30px;
+
+    &__icon {
+        display: block;
+        width: 509px;
+        height: auto;
+    }
+
+    &__text {
+        margin-left: 56px;
+        padding-top: 74px;
+        text-align: left;
+        @include typography.rubik-400;
+    }
+
+    &__title {
+        margin: 0 0 20px 0;
+        @include typography.rubik-500;
+        font-size: 35px;
+        color: $features-title-color;
+        line-height: 50px;
+        letter-spacing: 0;
+    }
+
+    &__paragraph {
+        margin: 0;
+        font-size: 16px;
+    }
+
+    &__list {
+        margin: 25px 0 0;
+        padding: 0;
+        list-style-type: none;
+        font-size: 14px;
+    }
+
+    &__item {
+        margin-bottom: 12px;
+        position: relative;
+        padding-left: 42px;
+        letter-spacing: 0;
+
+        &::before {
+            content: '';
+            width: 24px;
+            height: 24px;
+            position: absolute;
+            left: 2px;
+            top: 3px;
+            background-image: url('@/assets/images/Group1120.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    }
+}
+
+@media (max-width: 1728px) and (min-width: 1300px) {
+    .features {
+        &__icon {
+            width: calc(382px + (509px - 382px) * ((100vw - 1300px) / (1728px - 1300px)));
+        }
+    }
+}
+
+@media (max-width: 1500px) {
+    .features {
+        &__text {
+            padding-top: 57px;
+        }
+
+        &__title {
+            font-size: 30px;
+        }
+    }
+}
+
+@media (max-width: 1300px) and (min-width: 921px) {
+    .features {
+        &__icon {
+            width: calc(330px + (382px - 330px) * ((100vw - 920px) / (1300px - 920px)));
+        }
+    }
+}
+
+@media (max-width: 1300px) {
+    .features {
+        line-height: 22px;
+
+        &__title {
+            margin: 0 0 15px 0;
+            line-height: 37px;
+            font-size: 26px;
+        }
+
+        &__paragraph {
+            margin: 0;
+            font-size: 11px;
+        }
+
+        &__list {
+            margin-top: 18px;
+            font-size: 11px;
+        }
+
+        &__item {
+            margin-bottom: 8px;
+            padding-left: 31px;
+
+            &::before {
+                width: 18px;
+                height: 18px;
+                top: 2px;
+            }
+        }
+    }
+}
+
+@media (max-width: 920px) {
+    .features {
+        &__icon {
+            display: none;
+        }
+
+        &__text {
+            margin-left: 0;
+            padding-top: 0;
+        }
+
+        &__title {
+            line-height: 26px;
+        }
+
+        &__item {
+            margin-bottom: 0;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .features {
+        &__title {
+            margin: 0 35px 30px;
+            text-align: center;
+            line-height: 37px;
+        }
+
+        &__paragraph {
+            text-align: center;
+            font-size: 16px;
+            line-height: 26px;
+        }
+
+        &__list {
+            width: fit-content;
+            margin: 30px auto 0;
+        }
+
+        &__item {
+            font-size: 15px;
+        }
+    }
+}

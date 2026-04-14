@@ -1,0 +1,24 @@
+@mixin ubuntu-500 {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+  }
+
+  @mixin ubuntu-700 {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 700;
+  }
+
+  @mixin rubik-400 {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+  }
+
+  @mixin rubik-500 {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+  }
+
+  @mixin nunito-sans-400 {
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 400;
+  }
