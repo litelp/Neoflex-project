@@ -5,10 +5,7 @@ import type {
   ValidNewsData,
 } from '@/types/newsApiTypes';
 import axios from 'axios';
-
-function clearHtml(value: string): string {
-  return value.replace(/<[^>]*>/g, '').trim();
-}
+import { clearHtml } from './clearHtml';
 
 export async function getValidNews(): Promise<ValidNewsData[]> {
   const allNews = await getAllNews();
