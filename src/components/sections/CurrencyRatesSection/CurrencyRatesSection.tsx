@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { getRequiredRates } from '@/utils/exchangeRateApi';
 import type { RequiredRates } from '@/types/exchangeRate';
 import { formatDate } from '@/utils/formatDate';
+import { Loader } from '@/components/Loader/Loader';
 
 const MINUTES = 15;
 const SECONDS = 60;
@@ -76,10 +77,9 @@ export function CurrencyRatesSection() {
 
       <h3 className={styles['currency__subtitle']}>Currency</h3>
       {isLoading ? (
-        <div
-          role="status"
+        <Loader
+          label="Loading currency rates"
           className={styles['currency__loader']}
-          aria-label="Loading currency rates"
         />
       ) : error ? (
         <p className={styles['currency__error']} role="alert">

@@ -1,0 +1,114 @@
+@use '@/styles/mixins/typography' as typography;
+
+$text-color: #000000;
+$p-color: #2D3748;
+$btn-color: #003CFF;
+$btn-disabled-color: #ffffff;
+$btn-icon-disabled-color: #222222;
+
+.news {
+    margin-top: 48px;
+    text-align: center;
+
+    &__title {
+        margin: 0;
+        font-size: 30px;
+        line-height: 50px;
+        letter-spacing: 0;
+        @include typography.ubuntu-500;
+        color: $text-color;
+    }
+
+    &__desc {
+        margin: 8px 0 0;
+        font-size: 16px;
+        line-height: 50px;
+        letter-spacing: 0;
+        @include typography.ubuntu-500;
+        color: $p-color;
+    }
+
+    &__slider {
+        margin-top: 46px;
+        overflow: hidden;
+    }
+
+    &__list {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 80px;
+        list-style-type: none;
+        transition: transform 0.5s ease;
+    }
+
+    &__item {
+        width: 320px;
+        box-sizing: border-box;
+        flex: 0 0 320px;
+    }
+
+    &__buttons {
+        margin-top: 48px;
+        display: flex;
+        gap: 20px;
+        justify-content: flex-end;
+    }
+
+    &__slider-btn {
+        width: 64px;
+        height: 64px;
+        padding: 8px;
+        border-radius: 50px;
+        border: none;
+        background-color: $btn-color;
+        cursor: pointer;
+
+        &:disabled {
+            border: 1px solid $btn-color;
+            background-color: $btn-disabled-color;
+            cursor: default;
+
+            & .news__btn-icon path {
+                stroke: $btn-icon-disabled-color;
+            }
+        }
+    }
+
+    &__slider-btn-icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    &__loader,
+    &__error {
+        margin: 46px auto 0;
+    }
+}
+
+@media (max-width: 920px) {
+    .news {
+        &__title {
+            font-size: 23px;
+            line-height: 38px;
+        }
+
+        &__desc {
+            font-size: 12px;
+            line-height: 38px;
+        }
+
+        &__list {
+            gap: 10px;
+        }
+
+        &__item {
+            flex: 0 0 100%;
+            width: 100%;
+        }
+
+        &__buttons {
+            justify-content: center;
+        }
+    }
+}
