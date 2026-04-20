@@ -1,6 +1,6 @@
 import { NewsCard } from '@/components/NewsCard/NewsCard';
 import styles from './NewsSection.module.scss';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { ValidNewsData } from '@/types/newsApiTypes';
 import { getValidNews } from '@/utils/newsAPI';
 import { Loader } from '@/components/Loader/Loader';
@@ -47,7 +47,7 @@ function getSliderValues(
 export function NewsSection() {
   const [news, setNews] = useState<ValidNewsData[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const [loading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   const slider = useRef<HTMLDivElement | null>(null);
   const list = useRef<HTMLUListElement | null>(null);
@@ -59,45 +59,34 @@ export function NewsSection() {
   const isPrevDisabled = offset === 0;
   const isNextDisabled = maxOffset - offset < 1;
 
-  async function getNews(isMounted: () => boolean) {
+  const getNews = useCallback(async () => {
     try {
       const data = await getValidNews();
-
-      if (!isMounted()) return;
 
       setNews(data);
       setError(null);
     } catch {
-      if (!isMounted()) return;
-
       setError('Error loading news');
       setNews([]);
     } finally {
-      if (isMounted()) {
-        setIsLoading(false);
-      }
+      setIsLoading(false);
     }
-  }
+  }, []);
 
   useEffect(() => {
-    let mounted = true;
+    getNews();
+  }, [getNews]);
 
-    const isMounted = () => mounted;
-
-    getNews(isMounted);
-
+  useEffect(() => {
     const intervalId = window.setInterval(
-      () => {
-        getNews(isMounted);
-      },
+      getNews,
       MINUTES * SECONDS * MILLISECONDS
     );
 
     return () => {
-      mounted = false;
       window.clearInterval(intervalId);
     };
-  }, []);
+  }, [getNews]);
 
   function updateSlider() {
     if (!slider.current || !list.current) return;
@@ -140,7 +129,7 @@ export function NewsSection() {
         We update the news feed every 15 minutes. You can learn more by clicking
         on the news you are interested in.
       </p>
-      {loading ? (
+      {isLoading ? (
         <Loader label="Loading news" className={styles['news__loader']} />
       ) : error ? (
         <p className={styles['news__error']}>{error}</p>

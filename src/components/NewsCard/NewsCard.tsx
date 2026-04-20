@@ -22,8 +22,8 @@ export function NewsCard({
         rel="noopener noreferrer"
       >
         <img className={styles['card__image']} src={urlToImage} alt={title} />
-        <h3 className={styles['card__title']}>{title}</h3>
-        <p className={styles['card__desc']}>{description}</p>
+        <span className={styles['card__title']}>{title}</span>
+        <span className={styles['card__desc']}>{description}</span>
       </a>
     </article>
   );
