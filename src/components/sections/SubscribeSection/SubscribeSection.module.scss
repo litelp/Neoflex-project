@@ -5,6 +5,7 @@ $text-color: #1C1C1E;
 $form-color: #FFFFFF;
 $input-color: #9092B0;
 $btn-color: #686DF1;
+$error-color: #ff2e2e;
 
 .subscribe {
     margin: 64px 0 98px 0;
@@ -39,7 +40,14 @@ $btn-color: #686DF1;
         @include typography.ubuntu-500;
     }
 
+    &__success-message {
+        margin: 0 auto;
+    }
+
+
+
     &__form {
+        position: relative;
         width: 423px;
         padding: 22px 32px 22px 70px;
         display: flex;
@@ -48,6 +56,16 @@ $btn-color: #686DF1;
         border-radius: 20px;
         background-color: $form-color;
         box-shadow: 0px 10px 20px 0px #363A781A;
+    }
+
+    &__error {
+        position: absolute;
+        top: 130%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: $error-color;
+        @include typography.nunito-sans-400;
+        font-style: italic;
     }
 
     &__field {
@@ -139,6 +157,10 @@ $btn-color: #686DF1;
             box-sizing: border-box;
         }
 
+        &__error {
+            font-size: 12px;
+        }
+
         &__field {
             &::before {
                 width: 21px;
@@ -169,6 +191,10 @@ $btn-color: #686DF1;
     .subscribe {
         &__form {
             width: 365px;
+        }
+
+        &__error {
+            font-size: 11px;
         }
     }
 }

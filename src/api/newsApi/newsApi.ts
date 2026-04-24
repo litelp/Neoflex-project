@@ -5,7 +5,7 @@ import type {
   ValidNewsData,
 } from '@/types/newsApiTypes';
 import axios from 'axios';
-import { clearHtml } from './clearHtml';
+import { clearHtml } from '@/utils/clearHtml';
 
 export async function getValidNews(): Promise<ValidNewsData[]> {
   const allNews = await getAllNews();

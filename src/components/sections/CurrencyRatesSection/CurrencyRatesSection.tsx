@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from './CurrencyRatesSection.module.scss';
 import { Link } from 'react-router-dom';
-import { getRequiredRates } from '@/utils/exchangeRateApi';
+import { getRequiredRates } from '@/api/exchangeRateApi/exchangeRateApi';
 import type { RequiredRates } from '@/types/exchangeRate';
 import { formatDate } from '@/utils/formatDate';
 import { Loader } from '@/components/Loader/Loader';

@@ -2,7 +2,7 @@ import { NewsCard } from '@/components/NewsCard/NewsCard';
 import styles from './NewsSection.module.scss';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { ValidNewsData } from '@/types/newsApiTypes';
-import { getValidNews } from '@/utils/newsAPI';
+import { getValidNews } from '@/api/newsApi/newsApi';
 import { Loader } from '@/components/Loader/Loader';
 
 const MINUTES = 15;

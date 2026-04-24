@@ -1,6 +1,6 @@
-import { getValidNews } from './newsAPI';
+import { getValidNews } from './newsApi';
 import axios from 'axios';
-import { clearHtml } from './clearHtml';
+import { clearHtml } from '@/utils/clearHtml';
 
 vi.mock('axios');
 vi.mock('./clearHtml', () => ({
