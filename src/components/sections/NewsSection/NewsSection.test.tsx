@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import { NewsSection } from './NewsSection';
-import { getValidNews } from '@/utils/newsAPI';
+import { getValidNews } from '@/api/newsApi/newsApi';
 
-vi.mock('@/utils/newsAPI', () => ({
+vi.mock('@/api/newsApi/newsApi', () => ({
   getValidNews: vi.fn(),
 }));
 

@@ -1,9 +1,9 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { CurrencyRatesSection } from './CurrencyRatesSection';
-import { getRequiredRates } from '@/utils/exchangeRateApi';
+import { getRequiredRates } from '@/api/exchangeRateApi/exchangeRateApi';
 
-vi.mock('@/utils/exchangeRateApi', () => ({
+vi.mock('@/api/exchangeRateApi/exchangeRateApi', () => ({
   getRequiredRates: vi.fn(),
 }));
 

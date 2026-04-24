@@ -3,7 +3,7 @@ import axios from 'axios';
 import { clearHtml } from '@/utils/clearHtml';
 
 vi.mock('axios');
-vi.mock('./clearHtml', () => ({
+vi.mock('@/utils/clearHtml', () => ({
   clearHtml: vi.fn((v) => v),
 }));
 
