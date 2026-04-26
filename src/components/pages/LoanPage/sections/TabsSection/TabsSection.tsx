@@ -1,11 +1,19 @@
 import { useState } from 'react';
 import styles from './TabsSection.module.scss';
+import { AboutTab } from '../AboutTab/AboutTab';
+import { RatesTab } from '../RatesTab/RatesTab';
+
+const tabs = [
+  { name: 'About card', component: AboutTab },
+  { name: 'Rates and conditions', component: RatesTab },
+  { name: 'Cashback', component: 'Cashback' },
+  { name: 'FAQ', component: 'FAQ' },
+];
 
 export function TabsSection() {
   const [activeTab, setActiveTab] = useState(0);
 
-  const tabs = ['About card', 'Rates and conditions', 'Cashback', 'FAQ'];
-  const contents = ['About card', 'Rates and conditions', 'Cashback', 'FAQ'];
+  const ActiveContent = tabs[activeTab].component;
 
   return (
     <section className={styles.tabs}>
@@ -13,14 +21,16 @@ export function TabsSection() {
         {tabs.map((tab, index) => (
           <button
             className={`${styles['tabs__button']} ${activeTab === index ? styles['tabs__button--active'] : ''}`}
-            key={tab}
+            key={tab.name}
             onClick={() => setActiveTab(index)}
           >
-            {tab}
+            {tab.name}
           </button>
         ))}
       </div>
-      <div className={styles['tabs__content']}>{contents[activeTab]}</div>
+      <div className={styles['tabs__content']}>
+        <ActiveContent />
+      </div>
     </section>
   );
 }
