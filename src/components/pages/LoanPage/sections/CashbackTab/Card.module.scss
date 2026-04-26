@@ -1,0 +1,35 @@
+@use '@/styles/mixins/typography' as typography;
+
+$shadow-1: 0 2px 4px rgba(0, 0, 0, 0.2);
+$shadow-2: 0 0 8px rgba(0, 0, 0, 0.08);
+
+$text-color: #434343E5;
+$value-color: #000000;
+
+
+.card {
+    height: 163px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 28px;
+    box-shadow: $shadow-1, $shadow-2;
+    box-sizing: border-box;
+
+    &__text {
+        font-size: 16px;
+        line-height: 1.47;
+        letter-spacing: 0;
+        @include typography.ubuntu-500;
+        color: $text-color;
+    }
+
+    &__value {
+        font-size: 36px;
+        line-height: 1.47;
+        letter-spacing: 0;
+        @include typography.ubuntu-700;
+        color: $value-color;
+    }
+}

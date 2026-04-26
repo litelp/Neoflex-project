@@ -2,12 +2,14 @@ import { useState } from 'react';
 import styles from './TabsSection.module.scss';
 import { AboutTab } from '../AboutTab/AboutTab';
 import { RatesTab } from '../RatesTab/RatesTab';
+import { CashbackTab } from '../CashbackTab/CashbackTab';
+import { FaqTab } from '../FaqTab/FaqTab';
 
 const tabs = [
   { name: 'About card', component: AboutTab },
   { name: 'Rates and conditions', component: RatesTab },
-  { name: 'Cashback', component: 'Cashback' },
-  { name: 'FAQ', component: 'FAQ' },
+  { name: 'Cashback', component: CashbackTab },
+  { name: 'FAQ', component: FaqTab },
 ];
 
 export function TabsSection() {
