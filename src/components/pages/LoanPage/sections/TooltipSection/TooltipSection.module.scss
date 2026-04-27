@@ -45,6 +45,10 @@ $benefits-title-color: #3D3D3D;
         list-style-type: none;
     }
 
+    &__benefit-item {
+        cursor: pointer;
+    }
+
     &__benefit-title {
         margin: 0 0 8px;
         font-size: 20px;

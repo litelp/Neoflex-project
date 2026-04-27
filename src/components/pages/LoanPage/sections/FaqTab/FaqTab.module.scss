@@ -10,8 +10,12 @@ $arrow-color: #33363F;
     padding: 0;
     list-style-type: none;
 
-    &__section {
-
+    &__title {
+        font-size: 30px;
+        line-height: 1.47;
+        letter-spacing: 0;
+        @include typography.ubuntu-700;
+        color: $title-color;
     }
 
     &__issues-list {

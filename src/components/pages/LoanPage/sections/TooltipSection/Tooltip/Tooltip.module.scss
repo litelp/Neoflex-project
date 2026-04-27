@@ -1,0 +1,26 @@
+@use '@/styles/mixins/typography' as typography;
+
+$tooltip-color: #3D3D3D;
+$text-color: #FFFFFF;
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+
+    &__text {
+        margin-top: 6px;
+        padding: 8px 19px 0 7px;
+        position: absolute;
+        width: 170px;
+        height: 36px;
+        left: -32px;
+        font-size: 12px;
+        line-height: 1;
+        letter-spacing: 0.02em;
+        @include typography.ubuntu-700;
+        background-color: $tooltip-color;
+        color: $text-color;
+        box-sizing: border-box;
+    }
+}
