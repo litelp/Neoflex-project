@@ -84,7 +84,7 @@ export const validation = {
     setValueAs: (v: string) => v.trim(),
     validate: (value: string) => {
       if (!value) return 'Field is required';
-      if (!/^\d{6}$/.test(value)) return 'The number must be 4 digits';
+      if (!/^\d{6}$/.test(value)) return 'The number must be 6 digits';
       return true;
     },
   },

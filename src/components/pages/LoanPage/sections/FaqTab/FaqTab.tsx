@@ -20,6 +20,8 @@ export function FaqTab() {
                 <button
                   className={`${styles['faq__question']} ${activeId === issue.id ? styles['faq__question--open'] : ''}`}
                   onClick={() => handleToggle(issue.id)}
+                  type="button"
+                  aria-expanded={activeId === issue.id}
                 >
                   {issue.question}
                 </button>
