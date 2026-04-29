@@ -7,6 +7,8 @@ import {
   MIN_AMOUNT,
   validation,
 } from '@/utils/prescoringValidation';
+import { sendApplication } from '@/api/applicationApi/applicationApi';
+import { Loader } from '@/components/Loader/Loader';
 
 interface FormValues {
   term: number;
@@ -28,6 +30,7 @@ const clampAmount = (value: number) => {
 
 export function CustomizeForm() {
   const [amount, setAmount] = useState(String(MIN_AMOUNT));
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const numericAmount = amount === '' ? MIN_AMOUNT : Number(amount);
   const clampedAmount = clampAmount(numericAmount);
@@ -54,8 +57,11 @@ export function CustomizeForm() {
     register,
     handleSubmit,
     control,
-    formState: { errors, touchedFields, isSubmitted },
-  } = useForm<FormValues>({ mode: 'onChange' });
+    formState: { errors, touchedFields, isSubmitted, isSubmitting },
+  } = useForm<FormValues>({
+    mode: 'onChange',
+    defaultValues: { term: 6, middleName: '' },
+  });
 
   const values = useWatch({ control });
 
@@ -75,8 +81,18 @@ export function CustomizeForm() {
     return '';
   };
 
-  const onSubmit = (data: FormValues) => {
-    console.log({ amount: Number(amount), ...data });
+  const onSubmit = async (data: FormValues) => {
+    try {
+      setSubmitError(null);
+
+      await sendApplication({
+        amount: clampedAmount,
+        ...data,
+        middleName: data.middleName.trim() || null,
+      });
+    } catch {
+      setSubmitError('Failed to send application. Please try again.');
+    }
   };
 
   return (
@@ -161,7 +177,7 @@ export function CustomizeForm() {
           <span className={styles['form__label-text']}>Your patronymic</span>
           <input
             {...register('middleName', validation.middleName)}
-            className={`${styles['form__field-input']} getInputStatusClass('middleName')}`}
+            className={`${styles['form__field-input']} ${getInputStatusClass('middleName')}`}
             type="text"
             placeholder="For Example Victorovich"
           />
@@ -257,11 +273,22 @@ export function CustomizeForm() {
           )}
         </label>
       </div>
-      <Button
-        className={styles['form__button']}
-        type="submit"
-        text="Continue"
-      />
+      <div className={styles['form__submit-wrapper']}>
+        {submitError && (
+          <span className={styles['form__submit-error']}>{submitError}</span>
+        )}
+        <Button
+          className={styles['form__button']}
+          type="submit"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? (
+            <Loader className={styles['form__loader']} />
+          ) : (
+            'Continue'
+          )}
+        </Button>
+      </div>
     </form>
   );
 }

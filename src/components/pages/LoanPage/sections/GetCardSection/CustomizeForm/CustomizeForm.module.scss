@@ -221,12 +221,20 @@ $shadow-2: 0 0 8px rgba(0, 0, 0, 0.08);
     }
 
     &__button {
-        margin-top: 24px;
         margin-left: auto;
         display: block;
         width: 148px;
         height: 48px;
         border-radius: 8px;
+        position: relative;
+    }
+
+    &__loader {
+        position: absolute;
+        width: 35px;
+        height: 35px;
+        top: -50%;
+        transform: translateX(150%);
     }
 
     &__error {
@@ -234,6 +242,22 @@ $shadow-2: 0 0 8px rgba(0, 0, 0, 0.08);
         font-size: 16px;
         line-height: 1;
         letter-spacing: 0;
+        color: $error-color;
+    }
+
+    &__submit-wrapper {
+        margin-top: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__submit-error {
+        font-size: 16px;
+        line-height: 1;
+        letter-spacing: 0;
+        text-align: center;
+        @include typography.ubuntu-500;
         color: $error-color;
     }
 }
