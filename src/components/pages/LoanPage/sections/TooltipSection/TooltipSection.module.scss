@@ -75,10 +75,41 @@ $benefits-title-color: #3D3D3D;
     }
 
     &__image {
+        width: 380px;
         grid-column: 2;
         grid-row: 1 / 5;
         align-self: center;
         justify-self: center;
         transform: rotate(10deg);
+    }
+}
+
+@media (max-width: 1728px) and (min-width: 1300px) {
+    .tooltip {
+        &__image {
+            width: calc(280px + (380px - 280px) * ((100vw - 1300px) / (1728px - 1300px)));
+        }
+    }
+}
+
+@media (max-width: 1500px) {
+    .tooltip {
+        &__title {
+            font-size: 38px;
+        }
+    }
+}
+
+@media (max-width: 1300px) {
+    .tooltip {
+        &__image {
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 920px) {
+    .tooltip {
+        margin-top: 80px;
     }
 }

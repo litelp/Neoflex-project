@@ -34,3 +34,20 @@ $text-color: #000000;
         color: $text-color;
     }
 }
+
+@media (max-width: 1650px) {
+    .card {
+        &__title {
+            margin: 0;
+            font-size: 24px;
+        }
+    }
+}
+
+@media (max-width: 1100px) {
+    .card {
+        &__title {
+            margin: 24px 0 16px;
+        }
+    }
+}
