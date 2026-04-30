@@ -9,6 +9,7 @@ import {
 } from '@/utils/prescoringValidation';
 import { sendApplication } from '@/api/applicationApi/applicationApi';
 import { Loader } from '@/components/Loader/Loader';
+import { clampAmount } from '@/utils/clampAmount';
 
 interface FormValues {
   term: number;
@@ -20,13 +21,6 @@ interface FormValues {
   passportSeries: string;
   passportNumber: string;
 }
-
-const clampAmount = (value: number) => {
-  if (value < MIN_AMOUNT) return MIN_AMOUNT;
-  if (value > MAX_AMOUNT) return MAX_AMOUNT;
-
-  return value;
-};
 
 export function CustomizeForm() {
   const [amount, setAmount] = useState(String(MIN_AMOUNT));

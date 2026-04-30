@@ -1,6 +1,5 @@
+import { APPLICATION_API_BASE_URL } from '@/constants';
 import axios from 'axios';
-
-const URL = 'http://localhost:8080';
 
 type ApplicationData = {
   amount: number;
@@ -15,7 +14,7 @@ type ApplicationData = {
 };
 
 export async function sendApplication(data: ApplicationData) {
-  const response = await axios.post(`${URL}/application`, {
+  const response = await axios.post(`${APPLICATION_API_BASE_URL}/application`, {
     amount: data.amount,
     term: data.term,
     firstName: data.firstName,

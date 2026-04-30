@@ -1,9 +1,10 @@
+import { APPLICATION_API_BASE_URL } from '@/constants';
 import axios from 'axios';
 
-const URL = 'http://localhost:8080';
-
 export async function subscribeToNews(email: string) {
-  const response = await axios.post(`${URL}/email`, { email });
+  const response = await axios.post(`${APPLICATION_API_BASE_URL}/email`, {
+    email,
+  });
 
   return response.data;
 }
