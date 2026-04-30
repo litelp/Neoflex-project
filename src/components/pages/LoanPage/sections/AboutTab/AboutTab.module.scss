@@ -1,0 +1,44 @@
+$odd-cards-color: #EAECEE;
+$even-cards-color: #7F92ACB2;
+
+.about {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 40px;
+    margin: 49px 0 0;
+    padding: 0;
+    list-style-type: none;
+
+    &__item:nth-child(-n + 3) {
+        grid-column: span 2;
+    }
+
+    &__item:nth-child(n + 4) {
+        grid-column: span 3;
+    }
+
+    &__item:nth-child(odd)
+    &__card {
+        background-color: $odd-cards-color;
+    }
+
+    &__item:nth-child(even)
+    &__card {
+        background-color: $even-cards-color;
+    }
+
+    &__card {
+        width: 100%;
+    }
+}
+
+@media (max-width: 1100px) {
+    .about {
+        grid-template-columns: 1fr;
+        column-gap: 0;
+
+        &__card {
+            width: 100%;
+        }
+    }
+}

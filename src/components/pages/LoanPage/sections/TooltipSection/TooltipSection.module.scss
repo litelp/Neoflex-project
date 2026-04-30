@@ -1,0 +1,115 @@
+@use '@/styles/mixins/typography' as typography;
+
+$shadow-1: 0 2px 4px rgba(0, 0, 0, 0.2);
+$shadow-2: 0 0 8px rgba(0, 0, 0, 0.08);
+
+$title-color: #FFFFFF;
+$text-color: #2D3748;
+$benefits-title-color: #3D3D3D;
+
+.tooltip {
+    margin: 20px 0 48px;
+    padding: 48px 32px;
+    display: grid;
+    grid-template-columns: minmax(0, 650px) auto;
+    background: linear-gradient(180.8deg,rgba(203, 213, 224, 0.624) 34.33%,rgba(254, 235, 200, 0.56) 64.27%);
+    box-shadow: $shadow-1, $shadow-2;
+    border-radius: 28.8px;
+
+    &__title {
+        margin: 0 0 48px;
+        grid-column: 1;
+        font-size: 48px;
+        line-height: 1;
+        letter-spacing: 0.02em;
+        @include typography.ubuntu-700;
+        color: $title-color;
+    }
+
+    &__text {
+        margin: 0;
+        grid-column: 1;
+        font-size: 16px;
+        line-height: 1.12;
+        letter-spacing: 0.02em;
+        @include typography.ubuntu-500;
+        color: $text-color;
+    }
+
+    &__benefits-list {
+        margin: 32px 0;
+        padding: 0;
+        display: flex;
+        gap: 80px;
+        grid-column: 1;
+        list-style-type: none;
+    }
+
+    &__benefit-item {
+        cursor: pointer;
+    }
+
+    &__benefit-title {
+        margin: 0 0 8px;
+        font-size: 20px;
+        line-height: 1.12;
+        letter-spacing: 0.02em;
+        @include typography.ubuntu-700;
+        color: $benefits-title-color;
+    }
+
+    &__benefit-text {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.12;
+        letter-spacing: 0.02em;
+        @include typography.ubuntu-500;
+        color: $benefits-title-color;
+    }
+
+    &__button {
+        width: 145px;
+        height: 50px;
+        grid-column: 1;
+        border-radius: 8px;
+    }
+
+    &__image {
+        width: 380px;
+        grid-column: 2;
+        grid-row: 1 / 5;
+        align-self: center;
+        justify-self: center;
+        transform: rotate(10deg);
+    }
+}
+
+@media (max-width: 1728px) and (min-width: 1300px) {
+    .tooltip {
+        &__image {
+            width: calc(280px + (380px - 280px) * ((100vw - 1300px) / (1728px - 1300px)));
+        }
+    }
+}
+
+@media (max-width: 1500px) {
+    .tooltip {
+        &__title {
+            font-size: 38px;
+        }
+    }
+}
+
+@media (max-width: 1300px) {
+    .tooltip {
+        &__image {
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 920px) {
+    .tooltip {
+        margin-top: 80px;
+    }
+}

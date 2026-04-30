@@ -1,0 +1,35 @@
+@use '@/styles/mixins/typography' as typography;
+
+$condition-color: #000000;
+$description-color: #434343;
+$border-color: #7F92AC;
+
+.rates {
+    padding: 0 284px 0 0;
+    list-style-type: none;
+
+    &__item {
+        padding: 24px 0;
+        display: flex;
+        font-size: 16px;
+        line-height: 1;
+        letter-spacing: 0.02em;
+        @include typography.ubuntu-500;
+        border-bottom: 1px solid $border-color;
+
+        &:last-child {
+            border: none;
+        }
+    }
+
+    &__condition {
+        display: block;
+        width: 326px;
+        color: $condition-color;
+    }
+
+    &__description {
+        color: $description-color;
+        white-space: pre-line;
+    }
+}

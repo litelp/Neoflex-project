@@ -1,0 +1,84 @@
+@use '@/styles/mixins/typography' as typography;
+
+$border-color: #E2E8F0;
+$title-color: #000000;
+$question-color: #1C1C1E;
+$answer-color: #7B7454;
+$arrow-color: #33363F;
+
+.faq {
+    padding: 0;
+    list-style-type: none;
+
+    &__title {
+        font-size: 30px;
+        line-height: 1.47;
+        letter-spacing: 0;
+        @include typography.ubuntu-700;
+        color: $title-color;
+    }
+
+    &__issues-list {
+        padding: 0;
+        list-style-type: none;
+    }
+
+    &__issue {
+        border: 1px solid $border-color;
+    }
+
+    &__question {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        padding: 32px;
+        text-align: left;
+        font-size: 16px;
+        line-height: 1.47;
+        letter-spacing: 0;
+        @include typography.ubuntu-500;
+        color: $question-color;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+
+        &::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            right: 38px;
+            top: 50%;
+            border-left: 2px solid $arrow-color;
+            border-bottom: 2px solid $arrow-color;
+            transform: translateY(-50%) rotate(-45deg);
+            transition: transform 0.25s ease;
+        }
+
+        &--open::after {
+            transform: translateY(-50%) rotate(135deg);
+        }
+    }
+
+    &__answer-wrapper {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.3s ease, opacity 0.2s ease;
+
+        &--open {
+            max-height: 200px;
+            opacity: 1;
+        }
+    }
+
+    &__answer {
+        display: block;
+        padding: 32px;
+        font-size: 16px;
+        line-height: 1.47;
+        letter-spacing: 0;
+        @include typography.ubuntu-400;
+        color: $answer-color;
+    }
+}

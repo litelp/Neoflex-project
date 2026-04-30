@@ -1,0 +1,53 @@
+@use '@/styles/mixins/typography' as typography;
+
+$shadow-1: 0 2px 4px rgba(0, 0, 0, 0.2);
+$shadow-2: 0 0 8px rgba(0, 0, 0, 0.08);
+
+$text-color: #000000;
+
+.card {
+    height: 236px;
+    padding: 32px;
+    border-radius: 28px;
+    box-shadow: $shadow-1, $shadow-2;
+    box-sizing: border-box;
+
+    &__icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    &__title {
+        margin: 24px 0 16px;
+        font-size: 30px;
+        line-height: 1.47;
+        letter-spacing: 0.02em;
+        @include typography.ubuntu-700;
+        color: $text-color;
+    }
+
+    &__text {
+        font-size: 16px;
+        line-height: 1;
+        letter-spacing: 0.02em;
+        @include typography.ubuntu-500;
+        color: $text-color;
+    }
+}
+
+@media (max-width: 1650px) {
+    .card {
+        &__title {
+            margin: 0;
+            font-size: 24px;
+        }
+    }
+}
+
+@media (max-width: 1100px) {
+    .card {
+        &__title {
+            margin: 24px 0 16px;
+        }
+    }
+}

@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import type { NavItem } from '@/types/navTypes';
 
 const HEADER_DATA: NavItem[] = [
-  { id: 'card', text: 'Credit card', link: '/' },
+  { id: 'credit', text: 'Credit card', link: '/loan' },
   { id: 'product', text: 'Product', link: '/' },
   { id: 'account', text: 'Account', link: '/' },
   { id: 'resources', text: 'Resources', link: '/' },

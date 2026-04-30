@@ -1,0 +1,26 @@
+$gap: 40px;
+$odd-cards-color: #EAECEE;
+$even-cards-color: #88B3B899;
+
+.cashback {
+    margin-top: 32px;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    list-style-type: none;
+
+    &__item {
+        width: calc((100% - 2 * $gap) / 3);
+    }
+
+    &__item:nth-child(odd)
+    &__card {
+        background-color: $odd-cards-color;
+    }
+
+    &__item:nth-child(even)
+    &__card {
+        background-color: $even-cards-color;
+    }
+}
