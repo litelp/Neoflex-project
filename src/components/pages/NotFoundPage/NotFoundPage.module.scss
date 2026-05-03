@@ -1,0 +1,94 @@
+@use '@/styles/mixins/typography' as typography;
+
+$title-color: #1C1C1E;
+$p-color: #000000;
+$text-color: #4B4B4B;
+$link-bg-color: #003CFF;
+$link-text-color: #FFFFFF;
+
+.error {
+    margin: 24px 0 96px;
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+    align-items: center;
+
+    &__text-wrapper {
+        grid-column: 1;
+    }
+
+    &__title {
+        margin: 0;
+        font-size: 30px;
+        line-height: 1.12;
+        letter-spacing: 0;
+        @include typography.ubuntu-700;
+        color: $title-color;
+    }
+
+    &__paragraph {
+        margin: 32px 0;
+        font-size: 30px;
+        line-height: 1.12;
+        letter-spacing: 0;
+        @include typography.ubuntu-500;
+        color: $p-color;
+    }
+
+    &__text {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.12;
+        letter-spacing: 0;
+        @include typography.ubuntu-500;
+        color: $text-color;
+    }
+
+    &__link {
+        display: block;
+        margin-top: 32px;
+        width: 192px;
+        height: 40px;
+        text-align: center;
+        align-content: center;
+        background-color: $link-bg-color;
+        color: $link-text-color;
+        border-radius: 8px;
+        @include typography.ubuntu-700;
+        text-decoration: none;
+    }
+
+    &__image {
+        grid-column: 2;
+        width: 526px;
+    }
+}
+
+@media (max-width: 1728px) and (min-width: 921px) {
+    .error {
+        &__image {
+            width: calc(360px + (526px - 360px) * ((100vw - 1300px) / (1728px - 1300px)));
+        }
+    }
+}
+
+@media (max-width: 920px) {
+    .error {
+        margin-top: 64px;
+        grid-template-columns: 1fr;
+
+        &__image {
+            grid-column: 1;
+            grid-row: 1;
+            justify-self: center;
+        }
+
+        &__text-wrapper {
+            text-align: center;
+        }
+
+        &__link {
+            justify-self: center;
+        }
+    }
+}
