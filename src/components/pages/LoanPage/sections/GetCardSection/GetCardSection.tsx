@@ -3,6 +3,7 @@ import { CreditOffers } from './CreditOffers/CreditOffers';
 import { CustomizeForm } from './CustomizeForm/CustomizeForm';
 import styles from './GetCardSection.module.scss';
 import type { RootState } from '@/store/store';
+import { PreliminaryDecision } from './PreliminaryDecision/PreliminaryDescision';
 
 export function GetCardSection() {
   const status = useSelector((state: RootState) => state.application.status);
@@ -43,6 +44,7 @@ export function GetCardSection() {
       </ul>
       {status === 'form' && <CustomizeForm />}
       {status === 'offers' && <CreditOffers />}
+      {status === 'sent' && <PreliminaryDecision />}
     </section>
   );
 }

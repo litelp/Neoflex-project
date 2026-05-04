@@ -3,13 +3,15 @@ import offerImage from '@assets/images/offer.png';
 import successImg from '@assets/images/success.svg';
 import errorImg from '@assets/images/error.svg';
 import { Button } from '@/components/Button/Button';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import type { RootState } from '@/store/store';
 import type { CreditOffer } from '@/types/applicationTypes';
 import { applyOffer } from '@/api/applicationApi/applicationApi';
 import { useState } from 'react';
+import { offerSent } from '@/store/slice';
 
 export function CreditOffers() {
+  const dispatch = useDispatch();
   const offers = useSelector((state: RootState) => state.application.offers);
 
   const [error, setError] = useState<string | null>(null);
@@ -21,6 +23,8 @@ export function CreditOffers() {
       setError(null);
 
       await applyOffer(offer);
+
+      dispatch(offerSent());
     } catch {
       setError('Failed to apply offer');
     }

@@ -1,7 +1,7 @@
 import type { CreditOffer } from '@/types/applicationTypes';
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-type ApplicationStatus = 'form' | 'offers';
+type ApplicationStatus = 'form' | 'offers' | 'sent';
 
 interface ApplicationState {
   offers: CreditOffer[];
@@ -18,9 +18,11 @@ function getInitialState(): ApplicationState {
     };
   }
 
+  const parsedOffers = JSON.parse(savedOffers);
+
   return {
-    offers: JSON.parse(savedOffers),
-    status: 'offers',
+    offers: parsedOffers.offers,
+    status: parsedOffers.status,
   };
 }
 
@@ -32,7 +34,10 @@ const applicationSlice = createSlice({
       state.offers = action.payload;
       state.status = 'offers';
 
-      localStorage.setItem('creditOffers', JSON.stringify(action.payload));
+      localStorage.setItem(
+        'creditOffers',
+        JSON.stringify({ offers: action.payload, status: 'offers' })
+      );
     },
     removeOffers: (state) => {
       state.offers = [];
@@ -40,8 +45,17 @@ const applicationSlice = createSlice({
 
       localStorage.removeItem('creditOffers');
     },
+    offerSent: (state) => {
+      state.offers = [];
+      state.status = 'sent';
+
+      localStorage.setItem(
+        'creditOffers',
+        JSON.stringify({ offers: [], status: 'sent' })
+      );
+    },
   },
 });
 
-export const { setOffers } = applicationSlice.actions;
+export const { setOffers, removeOffers, offerSent } = applicationSlice.actions;
 export default applicationSlice.reducer;
