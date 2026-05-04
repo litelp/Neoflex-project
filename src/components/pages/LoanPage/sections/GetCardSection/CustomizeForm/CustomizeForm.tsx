@@ -10,6 +10,8 @@ import {
 import { sendApplication } from '@/api/applicationApi/applicationApi';
 import { Loader } from '@/components/Loader/Loader';
 import { clampAmount } from '@/utils/clampAmount';
+import { useDispatch } from 'react-redux';
+import { setOffers } from '@/store/slice';
 
 interface FormValues {
   term: number;
@@ -23,6 +25,8 @@ interface FormValues {
 }
 
 export function CustomizeForm() {
+  const dispatch = useDispatch();
+
   const [amount, setAmount] = useState(String(MIN_AMOUNT));
   const [submitError, setSubmitError] = useState<string | null>(null);
 
@@ -79,11 +83,13 @@ export function CustomizeForm() {
     try {
       setSubmitError(null);
 
-      await sendApplication({
+      const offers = await sendApplication({
         amount: clampedAmount,
         ...data,
         middleName: data.middleName.trim() || null,
       });
+
+      dispatch(setOffers(offers));
     } catch {
       setSubmitError('Failed to send application. Please try again.');
     }

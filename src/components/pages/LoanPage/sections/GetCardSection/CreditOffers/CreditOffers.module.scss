@@ -1,0 +1,63 @@
+@use '@/styles/mixins/typography' as typography;
+
+$shadow-1: 0 2px 4px rgba(0, 0, 0, 0.2);
+$shadow-2: 0 0 8px rgba(0, 0, 0, 0.08);
+
+$bg-color: #FFFFFF;
+$border-color: #003CFF;
+$error-color: #FF5631;
+
+.offers {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    @include typography.ubuntu-500;
+    position: relative;
+
+    &__item {
+        width: 295px;
+        padding: 32px;
+        text-align: center;
+        background-color: $bg-color;
+        border-radius: 28px;
+        box-shadow: $shadow-1, $shadow-2;
+        box-sizing: border-box;
+
+        &:hover {
+            border: 2px solid $border-color;
+        }
+    }
+
+    &__terms {
+        margin-top: 32px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+    }
+
+    &__with-icon {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    &__button {
+        width: 148px;
+        height: 48px;
+        margin-top: 90px;
+        border-radius: 8px;
+    }
+
+    &__error {
+        position: absolute;
+        bottom: -30px;
+        left: 50%;
+        text-align: center;
+        font-size: 16px;
+        line-height: 1;
+        letter-spacing: 0;
+        @include typography.ubuntu-500;
+        color: $error-color;
+    }
+}

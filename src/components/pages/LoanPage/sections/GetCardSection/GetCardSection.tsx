@@ -1,7 +1,12 @@
+import { useSelector } from 'react-redux';
+import { CreditOffers } from './CreditOffers/CreditOffers';
 import { CustomizeForm } from './CustomizeForm/CustomizeForm';
 import styles from './GetCardSection.module.scss';
+import type { RootState } from '@/store/store';
 
 export function GetCardSection() {
+  const status = useSelector((state: RootState) => state.application.status);
+
   return (
     <section className={styles['get-card']}>
       <h3 className={styles['get-card__title']}>How to get a card</h3>
@@ -36,7 +41,8 @@ export function GetCardSection() {
           </span>
         </li>
       </ul>
-      <CustomizeForm />
+      {status === 'form' && <CustomizeForm />}
+      {status === 'offers' && <CreditOffers />}
     </section>
   );
 }
