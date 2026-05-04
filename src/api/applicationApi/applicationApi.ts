@@ -1,19 +1,10 @@
 import { APPLICATION_API_BASE_URL } from '@/constants';
+import type { ApplicationData, CreditOffer } from '@/types/applicationTypes';
 import axios from 'axios';
 
-type ApplicationData = {
-  amount: number;
-  term: number;
-  firstName: string;
-  lastName: string;
-  middleName: string | null;
-  email: string;
-  birthDate: string;
-  passportSeries: string;
-  passportNumber: string;
-};
-
-export async function sendApplication(data: ApplicationData) {
+export async function sendApplication(
+  data: ApplicationData
+): Promise<CreditOffer[]> {
   const response = await axios.post(`${APPLICATION_API_BASE_URL}/application`, {
     amount: data.amount,
     term: data.term,
@@ -27,4 +18,8 @@ export async function sendApplication(data: ApplicationData) {
   });
 
   return response.data;
+}
+
+export async function applyOffer(offer: CreditOffer): Promise<void> {
+  await axios.post(`${APPLICATION_API_BASE_URL}/application/apply`, offer);
 }
