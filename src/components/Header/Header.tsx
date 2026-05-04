@@ -83,7 +83,9 @@ export function Header() {
             {HEADER_DATA.map((item) => (
               <li key={item.id}>
                 <NavLink
-                  className={styles['header__nav-link']}
+                  className={({ isActive }) =>
+                    `${styles['header__nav-link']} ${isActive ? styles['header__nav-link--active'] : ''}`
+                  }
                   to={item.link}
                   onClick={closeMenu}
                 >

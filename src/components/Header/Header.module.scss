@@ -62,6 +62,10 @@ $shadow-2: 0px 2px 4px #00000014;
             outline: 2px solid $nav-color;
             outline-offset: 2px;
         }
+
+        &--active {
+            color: $nav-hover-color;
+        }
     }
 
     &__button {
