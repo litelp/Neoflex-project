@@ -24,14 +24,14 @@ export function CreditOffers() {
 
       await applyOffer(offer);
 
-      dispatch(offerSent());
+      dispatch(offerSent(offer.applicationId));
     } catch {
       setError('Failed to apply offer');
     }
   };
 
   return (
-    <div className={styles.offers}>
+    <div id="offers" className={styles.offers}>
       {sortedOffers.map((offer) => (
         <article
           className={styles['offers__item']}

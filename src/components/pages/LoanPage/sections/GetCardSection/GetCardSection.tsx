@@ -1,12 +1,37 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { CreditOffers } from './CreditOffers/CreditOffers';
 import { CustomizeForm } from './CustomizeForm/CustomizeForm';
 import styles from './GetCardSection.module.scss';
 import type { RootState } from '@/store/store';
 import { PreliminaryDecision } from './PreliminaryDecision/PreliminaryDescision';
+import { useEffect } from 'react';
+import { getApplicationStatus } from '@/api/applicationApi/applicationApi';
+import { convertBackToFrontStatus } from '@/utils/applicationStatus';
+import { removeOffers, setApplicationStatus } from '@/store/slice';
 
 export function GetCardSection() {
+  const dispatch = useDispatch();
   const status = useSelector((state: RootState) => state.application.status);
+  const applicationId = useSelector(
+    (state: RootState) => state.application.applicationId
+  );
+
+  const syncApplicationStatus = async (applicationId: number) => {
+    try {
+      const application = await getApplicationStatus(applicationId);
+      const uiStatus = convertBackToFrontStatus(application.status);
+
+      dispatch(setApplicationStatus(uiStatus));
+    } catch {
+      dispatch(removeOffers());
+    }
+  };
+
+  useEffect(() => {
+    if (!applicationId) return;
+
+    syncApplicationStatus(applicationId);
+  }, [applicationId]);
 
   return (
     <section className={styles['get-card']}>

@@ -96,7 +96,7 @@ export function CustomizeForm() {
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+    <form id="form" className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <div className={styles['form__customize-wrapper']}>
         <div className={styles['form__left-wrapper']}>
           <h3 className={styles['form__title']}>Customize your card</h3>

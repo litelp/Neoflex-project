@@ -1,5 +1,9 @@
 import { APPLICATION_API_BASE_URL } from '@/constants';
-import type { ApplicationData, CreditOffer } from '@/types/applicationTypes';
+import type {
+  ApplicationData,
+  ApplicationResponse,
+  CreditOffer,
+} from '@/types/applicationTypes';
 import axios from 'axios';
 
 export async function sendApplication(
@@ -22,4 +26,14 @@ export async function sendApplication(
 
 export async function applyOffer(offer: CreditOffer): Promise<void> {
   await axios.post(`${APPLICATION_API_BASE_URL}/application/apply`, offer);
+}
+
+export async function getApplicationStatus(
+  applicationId: number
+): Promise<ApplicationResponse> {
+  const response = await axios.get(
+    `${APPLICATION_API_BASE_URL}/admin/application/${applicationId}`
+  );
+
+  return response.data;
 }

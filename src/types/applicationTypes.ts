@@ -20,3 +20,15 @@ export interface CreditOffer {
   isInsuranceEnabled: boolean;
   isSalaryClient: boolean;
 }
+
+export type ApplicationUIStatus = 'form' | 'offers' | 'sent';
+
+export type ApplicationBackendStatus =
+  | 'REQUEST_DENIED'
+  | 'PREAPPROVAL'
+  | 'APPROVED';
+
+export interface ApplicationResponse {
+  id: number;
+  status: ApplicationBackendStatus;
+}
