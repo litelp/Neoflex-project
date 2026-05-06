@@ -3,6 +3,7 @@ import type {
   ApplicationData,
   ApplicationResponse,
   CreditOffer,
+  ScoringFormData,
 } from '@/types/applicationTypes';
 import axios from 'axios';
 
@@ -36,4 +37,14 @@ export async function getApplicationStatus(
   );
 
   return response.data;
+}
+
+export async function sendScoringForm(
+  formData: ScoringFormData,
+  applicationId: number
+): Promise<void> {
+  await axios.put(
+    `${APPLICATION_API_BASE_URL}/application/registration/${applicationId}`,
+    formData
+  );
 }

@@ -5,7 +5,7 @@ import { useForm, useWatch } from 'react-hook-form';
 import {
   MAX_AMOUNT,
   MIN_AMOUNT,
-  validation,
+  prescoringValidation,
 } from '@/utils/prescoringValidation';
 import { sendApplication } from '@/api/applicationApi/applicationApi';
 import { Loader } from '@/components/Loader/Loader';
@@ -144,7 +144,7 @@ export function CustomizeForm() {
             Your last name
           </span>
           <input
-            {...register('lastName', validation.lastName)}
+            {...register('lastName', prescoringValidation.lastName)}
             className={`${styles['form__field-input']} ${getInputStatusClass('lastName')}`}
             type="text"
             placeholder="For Example Doe"
@@ -162,7 +162,7 @@ export function CustomizeForm() {
             Your first name
           </span>
           <input
-            {...register('firstName', validation.firstName)}
+            {...register('firstName', prescoringValidation.firstName)}
             className={`${styles['form__field-input']} ${getInputStatusClass('firstName')}`}
             type="text"
             placeholder="For Example Jhon"
@@ -176,7 +176,7 @@ export function CustomizeForm() {
         <label className={styles['form__field-name']}>
           <span className={styles['form__label-text']}>Your patronymic</span>
           <input
-            {...register('middleName', validation.middleName)}
+            {...register('middleName', prescoringValidation.middleName)}
             className={`${styles['form__field-input']} ${getInputStatusClass('middleName')}`}
             type="text"
             placeholder="For Example Victorovich"
@@ -205,7 +205,7 @@ export function CustomizeForm() {
             Your email
           </span>
           <input
-            {...register('email', validation.email)}
+            {...register('email', prescoringValidation.email)}
             className={`${styles['form__field-input']} ${getInputStatusClass('email')}`}
             type="text"
             placeholder="test@gmail.com"
@@ -223,7 +223,7 @@ export function CustomizeForm() {
             Your date of birth
           </span>
           <input
-            {...register('birthDate', validation.birthDate)}
+            {...register('birthDate', prescoringValidation.birthDate)}
             className={`${styles['form__field-input']} ${getInputStatusClass('birthDate')}`}
             type="date"
             placeholder="Select Date and Time"
@@ -241,7 +241,7 @@ export function CustomizeForm() {
             Your passport series
           </span>
           <input
-            {...register('passportSeries', validation.passportSeries)}
+            {...register('passportSeries', prescoringValidation.passportSeries)}
             className={`${styles['form__field-input']} ${getInputStatusClass('passportSeries')}`}
             type="text"
             placeholder="0000"
@@ -260,7 +260,7 @@ export function CustomizeForm() {
             Your passport number
           </span>
           <input
-            {...register('passportNumber', validation.passportNumber)}
+            {...register('passportNumber', prescoringValidation.passportNumber)}
             className={`${styles['form__field-input']} ${getInputStatusClass('passportNumber')}`}
             type="text"
             placeholder="000000"
