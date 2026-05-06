@@ -62,3 +62,7 @@ export async function sendScoringForm(
     }
   );
 }
+
+export async function sendDocument(applicationId: number): Promise<void> {
+  await axios.post(`${APPLICATION_API_BASE_URL}/document/${applicationId}`);
+}

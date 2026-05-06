@@ -4,12 +4,16 @@ import { TableSection } from './sections/TableSection/TableSection';
 import type { PaymentScheduleItem } from '@/types/applicationTypes';
 import { useParams } from 'react-router-dom';
 import { getApplication } from '@/api/applicationApi/applicationApi';
+import { SuccessDocument } from './sections/SuccessDocument/SuccessDocument';
+
+type DocumentPageStep = 'table' | 'success-document';
 
 export function DocumentPage() {
   const { applicationId } = useParams<{ applicationId: string }>();
 
   const [schedule, setSchedule] = useState<PaymentScheduleItem[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [step, setStep] = useState<DocumentPageStep>('table');
 
   useEffect(() => {
     async function loadApplication() {
@@ -35,7 +39,13 @@ export function DocumentPage() {
 
   return (
     <>
-      <TableSection data={schedule} />
+      {step === 'table' && (
+        <TableSection
+          data={schedule}
+          onSend={() => setStep('success-document')}
+        />
+      )}
+      {step === 'success-document' && <SuccessDocument />}
       {error && <p className={styles['document__error']}>{error}</p>}
     </>
   );
