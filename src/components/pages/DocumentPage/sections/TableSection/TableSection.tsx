@@ -1,6 +1,11 @@
 import type { PaymentScheduleItem } from '@/types/applicationTypes';
 import styles from './TableSection.module.scss';
 import { useState } from 'react';
+import { Button } from '@/components/Button/Button';
+import { Checkbox } from './Checkbox';
+import { Modal } from './Modal/Modal';
+import { sendDocument } from '@/api/applicationApi/applicationApi';
+import { useParams } from 'react-router-dom';
 
 interface ColumnTitle {
   key: keyof PaymentScheduleItem;
@@ -18,6 +23,7 @@ const columns: ColumnTitle[] = [
 
 interface TableProps {
   data: PaymentScheduleItem[];
+  onSend: () => void;
 }
 
 type SortType = 'asc' | 'desc';
@@ -27,7 +33,11 @@ interface SortState {
   type: SortType;
 }
 
-export function TableSection({ data }: TableProps) {
+export function TableSection({ data, onSend }: TableProps) {
+  const { applicationId } = useParams<{ applicationId: string }>();
+  const [isAgree, setIsAgree] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [sort, setSort] = useState<SortState>({
     column: 'number',
     type: 'asc',
@@ -55,6 +65,18 @@ export function TableSection({ data }: TableProps) {
       ? Number(left) - Number(right)
       : Number(right) - Number(left);
   });
+
+  const onSubmit = async () => {
+    try {
+      setError(null);
+
+      await sendDocument(Number(applicationId));
+
+      onSend();
+    } catch {
+      setError('Failed to send document. Please try again.');
+    }
+  };
 
   return (
     <section className={styles.table}>
@@ -94,6 +116,28 @@ export function TableSection({ data }: TableProps) {
           ))}
         </tbody>
       </table>
+      <div className={styles['table__controls']}>
+        <Button
+          className={styles['table__deny-btn']}
+          text="Deny"
+          onClick={() => setIsModalOpen(true)}
+        />
+        <Checkbox
+          className={styles['table__checkbox']}
+          text="I agree with the payment schedule"
+          onChange={setIsAgree}
+        />
+        <Button
+          className={styles['table__send-btn']}
+          text="Send"
+          disabled={!isAgree}
+          onClick={onSubmit}
+        />
+      </div>
+
+      {isModalOpen && <Modal onClose={() => setIsModalOpen(false)} />}
+
+      {error && <p className={styles['table__error']}>{error}</p>}
     </section>
   );
 }
