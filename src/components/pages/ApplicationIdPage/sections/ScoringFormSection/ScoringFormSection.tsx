@@ -114,7 +114,7 @@ export function ScoringFormSection({ onSuccess }: ScoringFormProps) {
               <option value="MARRIED">Married</option>
               <option value="SINGLE">Single</option>
               <option value="DIVORCED">Divorced</option>
-              <option value="WIDOWED">Widowed</option>
+              <option value="WIDOW_WIDOWER">Widow/widower</option>
             </select>
             {errors.maritalStatus && (
               <span className={styles['scoring__error']}>
@@ -129,10 +129,10 @@ export function ScoringFormSection({ onSuccess }: ScoringFormProps) {
               Your number of dependents
             </span>
             <select
-              {...register(
-                'dependentAmount',
-                scoringValidation.dependentAmount
-              )}
+              {...register('dependentAmount', {
+                ...scoringValidation.dependentAmount,
+                valueAsNumber: true,
+              })}
               className={`${styles['scoring__field-select']} ${getSelectStatusClass('dependentAmount')}`}
             >
               <option value="" hidden />
@@ -182,7 +182,16 @@ export function ScoringFormSection({ onSuccess }: ScoringFormProps) {
               )}
               className={`${styles['scoring__field-input']} ${getInputStatusClass('passportIssueBranch')}`}
               type="text"
-              placeholder="000000"
+              placeholder="000-000"
+              maxLength={7}
+              onInput={(event) => {
+                const input = event.currentTarget;
+                const digits = input.value.replace(/\D/g, '').slice(0, 6);
+                input.value =
+                  digits.length > 3
+                    ? `${digits.slice(0, 3)}-${digits.slice(3)}`
+                    : digits;
+              }}
             />
             {errors.passportIssueBranch && (
               <span className={styles['scoring__error']}>
@@ -243,7 +252,10 @@ export function ScoringFormSection({ onSuccess }: ScoringFormProps) {
               Your salary
             </span>
             <input
-              {...register('salary', scoringValidation.salary)}
+              {...register('salary', {
+                ...scoringValidation.salary,
+                setValueAs: (value) => Number(value),
+              })}
               className={`${styles['scoring__field-input']} ${getInputStatusClass('salary')}`}
               type="text"
               placeholder="For example 100 000"
@@ -283,10 +295,10 @@ export function ScoringFormSection({ onSuccess }: ScoringFormProps) {
               Your work experience total
             </span>
             <input
-              {...register(
-                'workExperienceTotal',
-                scoringValidation.workExperienceTotal
-              )}
+              {...register('workExperienceTotal', {
+                ...scoringValidation.workExperienceTotal,
+                setValueAs: (value) => Number(value),
+              })}
               className={`${styles['scoring__field-input']} ${getInputStatusClass('workExperienceTotal')}`}
               type="text"
               placeholder="For example 10"
@@ -305,10 +317,10 @@ export function ScoringFormSection({ onSuccess }: ScoringFormProps) {
               Your work experience current
             </span>
             <input
-              {...register(
-                'workExperienceCurrent',
-                scoringValidation.workExperienceCurrent
-              )}
+              {...register('workExperienceCurrent', {
+                ...scoringValidation.workExperienceCurrent,
+                setValueAs: (value) => Number(value),
+              })}
               className={`${styles['scoring__field-input']} ${getInputStatusClass('workExperienceCurrent')}`}
               type="text"
               placeholder="For example 2"

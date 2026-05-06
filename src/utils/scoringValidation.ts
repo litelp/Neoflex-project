@@ -50,8 +50,8 @@ export const scoringValidation = {
     validate: (value: string) => {
       if (!value) return 'Field is required';
 
-      if (!/^\d{6}$/.test(value)) {
-        return 'The series must be 6 digits';
+      if (!/^\d{3}-\d{3}$/.test(value)) {
+        return 'Division code must be in format 123-456';
       }
 
       return true;

@@ -18,7 +18,14 @@ export function DocumentPage() {
 
         const application = await getApplication(Number(applicationId));
 
-        setSchedule(application.credit.paymentSchedule);
+        const paymentSchedule = application.credit?.paymentSchedule;
+
+        if (!paymentSchedule) {
+          setError('Payment schedule is not available for this application');
+          return;
+        }
+
+        setSchedule(paymentSchedule);
       } catch {
         setError('Failed to load payment schedule');
       }

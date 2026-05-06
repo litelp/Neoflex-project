@@ -26,8 +26,8 @@ export function TableSection({ data }: TableProps) {
               <>
                 <th className={styles['table__column-title']} key={column.key}>
                   {column.title}
+                  <span className={`${styles['table__sort']}`}></span>
                 </th>
-                <span className={`${styles['table__sort']}`}></span>
               </>
             ))}
           </tr>

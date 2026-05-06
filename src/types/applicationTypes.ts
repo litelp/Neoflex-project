@@ -41,7 +41,7 @@ export interface ApplicationResponse {
   id: number;
   status: ApplicationBackendStatus;
   credit: {
-    paymentSchedule: PaymentScheduleItem[];
+    paymentSchedule: PaymentScheduleItem[] | null;
   };
 }
 

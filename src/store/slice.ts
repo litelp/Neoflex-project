@@ -75,11 +75,14 @@ const applicationSlice = createSlice({
     ) => {
       state.status = action.payload;
 
-      JSON.stringify({
-        applicationId: state.applicationId,
-        offers: state.offers,
-        status: state.status,
-      });
+      localStorage.setItem(
+        'creditOffers',
+        JSON.stringify({
+          applicationId: state.applicationId,
+          offers: state.offers,
+          status: state.status,
+        })
+      );
     },
   },
 });

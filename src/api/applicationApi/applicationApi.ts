@@ -45,6 +45,20 @@ export async function sendScoringForm(
 ): Promise<void> {
   await axios.put(
     `${APPLICATION_API_BASE_URL}/application/registration/${applicationId}`,
-    formData
+    {
+      gender: formData.gender,
+      maritalStatus: formData.maritalStatus,
+      dependentAmount: formData.dependentAmount,
+      passportIssueDate: formData.passportIssueDate,
+      passportIssueBranch: formData.passportIssueBranch,
+      employment: {
+        employmentStatus: formData.employmentStatus,
+        employerINN: formData.employerINN,
+        salary: formData.salary,
+        position: formData.position,
+        workExperienceTotal: formData.workExperienceTotal,
+        workExperienceCurrent: formData.workExperienceCurrent,
+      },
+    }
   );
 }
