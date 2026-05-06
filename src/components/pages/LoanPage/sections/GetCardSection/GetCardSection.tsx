@@ -5,7 +5,7 @@ import styles from './GetCardSection.module.scss';
 import type { RootState } from '@/store/store';
 import { PreliminaryDecision } from './PreliminaryDecision/PreliminaryDescision';
 import { useEffect } from 'react';
-import { getApplicationStatus } from '@/api/applicationApi/applicationApi';
+import { getApplication } from '@/api/applicationApi/applicationApi';
 import { convertBackToFrontStatus } from '@/utils/applicationStatus';
 import { removeOffers, setApplicationStatus } from '@/store/slice';
 
@@ -16,22 +16,22 @@ export function GetCardSection() {
     (state: RootState) => state.application.applicationId
   );
 
-  const syncApplicationStatus = async (applicationId: number) => {
-    try {
-      const application = await getApplicationStatus(applicationId);
-      const uiStatus = convertBackToFrontStatus(application.status);
-
-      dispatch(setApplicationStatus(uiStatus));
-    } catch {
-      dispatch(removeOffers());
-    }
-  };
-
   useEffect(() => {
     if (!applicationId) return;
 
+    const syncApplicationStatus = async (applicationId: number) => {
+      try {
+        const application = await getApplication(applicationId);
+        const uiStatus = convertBackToFrontStatus(application.status);
+
+        dispatch(setApplicationStatus(uiStatus));
+      } catch {
+        dispatch(removeOffers());
+      }
+    };
+
     syncApplicationStatus(applicationId);
-  }, [applicationId]);
+  }, [applicationId, dispatch]);
 
   return (
     <section className={styles['get-card']}>

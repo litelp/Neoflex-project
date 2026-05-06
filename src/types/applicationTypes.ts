@@ -28,9 +28,21 @@ export type ApplicationBackendStatus =
   | 'PREAPPROVAL'
   | 'APPROVED';
 
+export type PaymentScheduleItem = {
+  number: number;
+  date: string;
+  totalPayment: number;
+  interestPayment: number;
+  debtPayment: number;
+  remainingDebt: number;
+};
+
 export interface ApplicationResponse {
   id: number;
   status: ApplicationBackendStatus;
+  credit: {
+    paymentSchedule: PaymentScheduleItem[];
+  };
 }
 
 export interface ScoringFormData {

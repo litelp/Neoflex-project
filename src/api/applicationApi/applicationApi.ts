@@ -29,7 +29,7 @@ export async function applyOffer(offer: CreditOffer): Promise<void> {
   await axios.post(`${APPLICATION_API_BASE_URL}/application/apply`, offer);
 }
 
-export async function getApplicationStatus(
+export async function getApplication(
   applicationId: number
 ): Promise<ApplicationResponse> {
   const response = await axios.get(
