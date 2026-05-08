@@ -1,1 +1,14 @@
 @use '@/styles/mixins/typography' as typography;
+
+$error-color: #ff5631;
+
+.document {
+  &__error {
+    font-size: 16px;
+    line-height: 1;
+    letter-spacing: 0;
+    text-align: center;
+    @include typography.ubuntu-500;
+    color: $error-color;
+  }
+}

@@ -1,10 +1,11 @@
 @use '@/styles/mixins/typography' as typography;
 
 $border-color: #808080;
-$title-color: #1C1C1E;
-$bg-color: #F5F4FF;
+$title-color: #1c1c1e;
+$bg-color: #f5f4ff;
 $value-color: #000000;
-$border-focus-color: #3182CE;
+$border-focus-color: #3182ce;
+$error-color: #ff5631;
 
 .enter {
   margin: 104px 0 96px;
@@ -36,7 +37,13 @@ $border-focus-color: #3182CE;
     letter-spacing: 0.02em;
     @include typography.ubuntu-500;
     background-color: $bg-color;
-    background-image: radial-gradient(circle, transparent 9px, $border-color 9px, $border-color 10px, transparent 10px);
+    background-image: radial-gradient(
+      circle,
+      transparent 9px,
+      $border-color 9px,
+      $border-color 10px,
+      transparent 10px
+    );
     background-repeat: no-repeat;
     background-position: center;
     border: 0.5px solid $border-color;
@@ -49,11 +56,17 @@ $border-focus-color: #3182CE;
     }
 
     &:not(:placeholder-shown) {
-        background-image: none;
+      background-image: none;
     }
   }
 
-  &__loader {
-
+  &__error {
+    margin: 16px 0 0;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1;
+    letter-spacing: 0;
+    @include typography.ubuntu-500;
+    color: $error-color;
   }
 }
