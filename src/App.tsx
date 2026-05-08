@@ -5,6 +5,8 @@ import { LoanPage } from './components/pages/LoanPage/LoanPage';
 import { NotFoundPage } from './components/pages/NotFoundPage/NotFoundPage';
 import { ApplicationIdPage } from './components/pages/ApplicationIdPage/ApplicationIdPage';
 import { DocumentPage } from './components/pages/DocumentPage/DocumentPage';
+import { SignPage } from './components/pages/SignPage/SignPage';
+import { CodePage } from './components/pages/CodePage/CodePage';
 
 function App() {
   return (
@@ -17,6 +19,11 @@ function App() {
           path="/loan/:applicationId/document"
           element={<DocumentPage />}
         />
+        <Route
+          path="/loan/:applicationId/document/sign"
+          element={<SignPage />}
+        />
+        <Route path="/loan/:applicationId/code" element={<CodePage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

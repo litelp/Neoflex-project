@@ -1,0 +1,85 @@
+@use '@/styles/mixins/typography' as typography;
+
+$title-color: #1C1C1E;
+$text-color: #4F5665;
+$step-color: #000000;
+$error-color: #FF5631;
+
+.info {
+    margin: 104px auto 97px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 120px;
+    align-items: center;
+
+    &__title {
+        margin: 0;
+        font-size: 30px;
+        line-height: 1.12;
+        letter-spacing: 0;
+        @include typography.ubuntu-700;
+        color: $title-color;
+    }
+
+    &__step {
+        grid-column: 2 / 3;
+        font-size: 16px;
+        line-height: 1.12;
+        letter-spacing: 0;
+        @include typography.ubuntu-500;
+        color: $step-color;
+    }
+
+    &__text {
+        margin: 32px 0;
+        grid-column: 1 / -1;
+        font-size: 16px;
+        line-height: 1.12;
+        letter-spacing: 0;
+        @include typography.ubuntu-500;
+        color: $text-color;
+    }
+
+    &__doc-link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        font-size: 20px;
+        line-height: 1.12;
+        letter-spacing: 0;
+        @include typography.ubuntu-500;
+        color: $step-color;
+        cursor: pointer;
+    }
+
+    &__controls {
+        margin-top: 16px;
+        grid-row: 4;
+        grid-column: 2 / 3;
+        display: flex;
+        justify-content: flex-end;
+        gap: 80px;
+    }
+
+    &__send-btn {
+        width: 160px;
+        height: 40px;
+        border-radius: 8px;
+    }
+
+    &__error {
+        font-size: 16px;
+        line-height: 1;
+        letter-spacing: 0;
+        text-align: center;
+        @include typography.ubuntu-500;
+        color: $error-color;
+    }
+
+    &__loader {
+        width: 40px;
+        height: 40px;
+        text-align: center;
+    }
+}
