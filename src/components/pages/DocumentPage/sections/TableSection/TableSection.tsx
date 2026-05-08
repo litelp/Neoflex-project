@@ -2,10 +2,11 @@ import type { PaymentScheduleItem } from '@/types/applicationTypes';
 import styles from './TableSection.module.scss';
 import { useState } from 'react';
 import { Button } from '@/components/Button/Button';
-import { Checkbox } from './Checkbox';
 import { Modal } from './Modal/Modal';
 import { sendDocument } from '@/api/applicationApi/applicationApi';
 import { useParams } from 'react-router-dom';
+import { Checkbox } from '@/components/Checkbox/Checkbox';
+import { Loader } from '@/components/Loader/Loader';
 
 interface ColumnTitle {
   key: keyof PaymentScheduleItem;
@@ -38,6 +39,7 @@ export function TableSection({ data, onSend }: TableProps) {
   const [isAgree, setIsAgree] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [sort, setSort] = useState<SortState>({
     column: 'number',
     type: 'asc',
@@ -69,12 +71,14 @@ export function TableSection({ data, onSend }: TableProps) {
   const onSubmit = async () => {
     try {
       setError(null);
+      setIsLoading(true);
 
       await sendDocument(Number(applicationId));
 
       onSend();
     } catch {
       setError('Failed to send document. Please try again.');
+      setIsLoading(false);
     }
   };
 
@@ -127,12 +131,16 @@ export function TableSection({ data, onSend }: TableProps) {
           text="I agree with the payment schedule"
           onChange={setIsAgree}
         />
-        <Button
-          className={styles['table__send-btn']}
-          text="Send"
-          disabled={!isAgree}
-          onClick={onSubmit}
-        />
+        {isLoading ? (
+          <Loader className={styles['table__loader']} />
+        ) : (
+          <Button
+            className={styles['table__send-btn']}
+            text="Send"
+            disabled={!isAgree}
+            onClick={onSubmit}
+          />
+        )}
       </div>
 
       {isModalOpen && <Modal onClose={() => setIsModalOpen(false)} />}

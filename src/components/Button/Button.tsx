@@ -5,12 +5,14 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text?: string;
   children?: ReactNode;
   className?: string;
+  onClick?: () => void;
 }
 
 export function Button({
   text,
   children,
   className = '',
+  onClick,
   type = 'button',
   ...props
 }: ButtonProps) {
@@ -19,6 +21,7 @@ export function Button({
       {...props}
       type={type}
       className={`${styles.button} ${className}`.trim()}
+      onClick={onClick}
     >
       {children ?? text}
     </button>

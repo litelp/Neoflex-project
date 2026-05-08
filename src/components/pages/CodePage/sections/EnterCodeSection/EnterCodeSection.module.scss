@@ -1,0 +1,59 @@
+@use '@/styles/mixins/typography' as typography;
+
+$border-color: #808080;
+$title-color: #1C1C1E;
+$bg-color: #F5F4FF;
+$value-color: #000000;
+$border-focus-color: #3182CE;
+
+.enter {
+  margin: 104px 0 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__title {
+    margin: 0 0 32px;
+    font-size: 30px;
+    line-height: 1.12;
+    letter-spacing: 0.02em;
+    text-align: center;
+    color: $title-color;
+    @include typography.ubuntu-700;
+  }
+
+  &__code {
+    display: flex;
+    gap: 16px;
+  }
+
+  &__value {
+    width: 48px;
+    height: 48px;
+    text-align: center;
+    font-size: 20px;
+    line-height: 1.12;
+    letter-spacing: 0.02em;
+    @include typography.ubuntu-500;
+    background-color: $bg-color;
+    background-image: radial-gradient(circle, transparent 9px, $border-color 9px, $border-color 10px, transparent 10px);
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 0.5px solid $border-color;
+    border-radius: 8px;
+    color: $value-color;
+    caret-color: transparent;
+
+    &:focus {
+      border-color: $border-focus-color;
+    }
+
+    &:not(:placeholder-shown) {
+        background-image: none;
+    }
+  }
+
+  &__loader {
+
+  }
+}
