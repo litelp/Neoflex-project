@@ -3,7 +3,7 @@ import { CreditOffers } from './CreditOffers/CreditOffers';
 import { CustomizeForm } from './CustomizeForm/CustomizeForm';
 import styles from './GetCardSection.module.scss';
 import type { RootState } from '@/store/store';
-import { PreliminaryDecision } from './PreliminaryDecision/PreliminaryDescision';
+import { PreliminaryDecision } from './PreliminaryDecision/PreliminaryDecision';
 import { useEffect } from 'react';
 import { getApplication } from '@/api/applicationApi/applicationApi';
 import { convertBackToFrontStatus } from '@/utils/applicationStatus';

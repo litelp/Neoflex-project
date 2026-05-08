@@ -3,6 +3,10 @@ import userEvent from '@testing-library/user-event';
 import { CustomizeForm } from './CustomizeForm';
 import { sendApplication } from '@/api/applicationApi/applicationApi';
 
+vi.mock('react-redux', () => ({
+  useDispatch: () => vi.fn(),
+}));
+
 vi.mock('@/api/applicationApi/applicationApi', () => ({
   sendApplication: vi.fn(),
 }));
@@ -69,7 +73,7 @@ describe('CustomizeForm', () => {
   });
 
   it('submit valid form data', async () => {
-    mockedSendApplication.mockResolvedValue({ id: 1 });
+    mockedSendApplication.mockResolvedValue([]);
 
     const user = userEvent.setup();
 
