@@ -3,6 +3,10 @@
 $error-color: #ff5631;
 
 .document {
+    &__loader {
+        margin: 70px auto;
+    }
+
   &__error {
     font-size: 16px;
     line-height: 1;

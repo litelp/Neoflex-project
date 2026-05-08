@@ -186,7 +186,7 @@ $shadow-2: 0 0 8px rgba(0, 0, 0, 0.08);
 
   &__button {
     margin-left: auto;
-    display: block;
+    display: flex;
     width: 148px;
     height: 48px;
     border-radius: 8px;

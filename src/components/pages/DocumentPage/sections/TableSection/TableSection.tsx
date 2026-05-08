@@ -6,7 +6,6 @@ import { Modal } from './Modal/Modal';
 import { sendDocument } from '@/api/applicationApi/applicationApi';
 import { useParams } from 'react-router-dom';
 import { Checkbox } from '@/components/Checkbox/Checkbox';
-import { Loader } from '@/components/Loader/Loader';
 
 interface ColumnTitle {
   key: keyof PaymentScheduleItem;
@@ -131,16 +130,13 @@ export function TableSection({ data, onSend }: TableProps) {
           text="I agree with the payment schedule"
           onChange={setIsAgree}
         />
-        {isLoading ? (
-          <Loader className={styles['table__loader']} />
-        ) : (
-          <Button
+        <Button
             className={styles['table__send-btn']}
             text="Send"
             disabled={!isAgree}
             onClick={onSubmit}
-          />
-        )}
+            loading={isLoading}
+         />
       </div>
 
       {isModalOpen && <Modal onClose={() => setIsModalOpen(false)} />}

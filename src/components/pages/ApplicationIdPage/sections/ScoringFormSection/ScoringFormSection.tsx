@@ -1,12 +1,12 @@
 import { Button } from '@/components/Button/Button';
 import styles from './ScoringFormSection.module.scss';
-import { Loader } from '@/components/Loader/Loader';
 import { useForm, useWatch } from 'react-hook-form';
 import { useState } from 'react';
 import { sendScoringForm } from '@/api/applicationApi/applicationApi';
 import type { ScoringFormData } from '@/types/applicationTypes';
 import { useParams } from 'react-router-dom';
 import { scoringValidation } from '@/utils/scoringValidation';
+import { scoringFormOptions } from './mock';
 
 interface ScoringFormProps {
   onSuccess: () => void;
@@ -90,9 +90,9 @@ export function ScoringFormSection({ onSuccess }: ScoringFormProps) {
               {...register('gender', scoringValidation.gender)}
               className={`${styles['scoring__field-select']} ${getSelectStatusClass('gender')}`}
             >
-              <option value="" hidden />
-              <option value="MALE">Male</option>
-              <option value="FEMALE">Female</option>
+              {scoringFormOptions.gender.map((item) => (
+                <option value={item.value} key={item.id} hidden={item.hidden}>{item.text}</option>
+              ))}
             </select>
             {errors.gender && (
               <span className={styles['scoring__error']}>
@@ -110,11 +110,9 @@ export function ScoringFormSection({ onSuccess }: ScoringFormProps) {
               {...register('maritalStatus', scoringValidation.maritalStatus)}
               className={`${styles['scoring__field-select']} ${getSelectStatusClass('maritalStatus')}`}
             >
-              <option value="" hidden />
-              <option value="MARRIED">Married</option>
-              <option value="SINGLE">Single</option>
-              <option value="DIVORCED">Divorced</option>
-              <option value="WIDOW_WIDOWER">Widow/widower</option>
+              {scoringFormOptions.maritalStatus.map((item) => (
+                <option value={item.value} key={item.id} hidden={item.hidden}>{item.text}</option>
+              ))}
             </select>
             {errors.maritalStatus && (
               <span className={styles['scoring__error']}>
@@ -135,13 +133,9 @@ export function ScoringFormSection({ onSuccess }: ScoringFormProps) {
               })}
               className={`${styles['scoring__field-select']} ${getSelectStatusClass('dependentAmount')}`}
             >
-              <option value="" hidden />
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5 or more</option>
+              {scoringFormOptions.dependentAmount.map((item) => (
+                <option value={item.value} key={item.id} hidden={item.hidden}>{item.text}</option>
+              ))}
             </select>
             {errors.dependentAmount && (
               <span className={styles['scoring__error']}>
@@ -215,11 +209,9 @@ export function ScoringFormSection({ onSuccess }: ScoringFormProps) {
               )}
               className={`${styles['scoring__field-select']} ${getSelectStatusClass('employmentStatus')}`}
             >
-              <option value="" hidden />
-              <option value="EMPLOYED">Employed</option>
-              <option value="SELF_EMPLOYED">Self-employed</option>
-              <option value="UNEMPLOYED">Unemployed</option>
-              <option value="BUSINESS_OWNER">Business owner</option>
+              {scoringFormOptions.employmentStatus.map((item) => (
+                <option value={item.value} key={item.id} hidden={item.hidden}>{item.text}</option>
+              ))}
             </select>
             {errors.employmentStatus && (
               <span className={styles['scoring__error']}>
@@ -276,11 +268,9 @@ export function ScoringFormSection({ onSuccess }: ScoringFormProps) {
               {...register('position', scoringValidation.position)}
               className={`${styles['scoring__field-select']} ${getSelectStatusClass('position')}`}
             >
-              <option value="" hidden />
-              <option value="MID_MANAGER">Middle manager</option>
-              <option value="TOP_MANAGER">Top manager</option>
-              <option value="WORKER">Worker</option>
-              <option value="OWNER">Owner</option>
+              {scoringFormOptions.position.map((item) => (
+                <option value={item.value} key={item.id} hidden={item.hidden}>{item.text}</option>
+              ))}
             </select>
             {errors.position && (
               <span className={styles['scoring__error']}>
@@ -341,15 +331,10 @@ export function ScoringFormSection({ onSuccess }: ScoringFormProps) {
           )}
           <Button
             className={styles['scoring__button']}
+            text='Continue'
             type="submit"
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? (
-              <Loader className={styles['scoring__loader']} />
-            ) : (
-              'Continue'
-            )}
-          </Button>
+            loading={isSubmitting}
+           />
         </div>
       </form>
     </section>

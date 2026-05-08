@@ -8,7 +8,6 @@ import {
   prescoringValidation,
 } from '@/utils/prescoringValidation';
 import { sendApplication } from '@/api/applicationApi/applicationApi';
-import { Loader } from '@/components/Loader/Loader';
 import { clampAmount } from '@/utils/clampAmount';
 import { useDispatch } from 'react-redux';
 import { setOffers } from '@/store/slice';
@@ -278,16 +277,11 @@ export function CustomizeForm() {
           <span className={styles['form__submit-error']}>{submitError}</span>
         )}
         <Button
-          className={styles['form__button']}
-          type="submit"
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? (
-            <Loader className={styles['form__loader']} />
-          ) : (
-            'Continue'
-          )}
-        </Button>
+            className={styles['form__button']}
+            text='Continue'
+            type="submit"
+            loading={isSubmitting}
+           />
       </div>
     </form>
   );
