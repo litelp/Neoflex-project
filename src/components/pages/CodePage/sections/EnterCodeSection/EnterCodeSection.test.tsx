@@ -24,13 +24,23 @@ interface RenderComponentOptions {
   setIsLoading?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function renderComponent({onSend = vi.fn(), isLoading = false, setIsLoading = vi.fn()}: RenderComponentOptions = {}) {
+function renderComponent({
+  onSend = vi.fn(),
+  isLoading = false,
+  setIsLoading = vi.fn(),
+}: RenderComponentOptions = {}) {
   render(
     <MemoryRouter initialEntries={['/document/1']}>
       <Routes>
         <Route
           path="/document/:applicationId"
-            element={<EnterCodeSection onSend={onSend} isLoading={isLoading} setIsLoading={setIsLoading} />}
+          element={
+            <EnterCodeSection
+              onSend={onSend}
+              isLoading={isLoading}
+              setIsLoading={setIsLoading}
+            />
+          }
         />
       </Routes>
     </MemoryRouter>
@@ -59,7 +69,7 @@ describe('EnterCodeSection', () => {
 
     mockedSendCode.mockResolvedValue();
 
-    renderComponent({onSend, setIsLoading});
+    renderComponent({ onSend, setIsLoading });
 
     const inputs = screen.getAllByRole('textbox');
 

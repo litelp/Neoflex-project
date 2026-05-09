@@ -9,7 +9,13 @@ export function CodePage() {
   const [isLoading, setIsLoading] = useState(false);
 
   const pages: Record<SignPageStep, ReactElement> = {
-    enter: <EnterCodeSection onSend={() => setStep('congratulations')} isLoading={isLoading} setIsLoading={setIsLoading} />,
+    enter: (
+      <EnterCodeSection
+        onSend={() => setStep('congratulations')}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
+      />
+    ),
     congratulations: <SuccessCode />,
   };
   return pages[step];

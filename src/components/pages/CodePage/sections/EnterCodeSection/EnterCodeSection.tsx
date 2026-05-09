@@ -10,7 +10,11 @@ interface EnterCodeSectionProps {
   setIsLoading: Dispatch<SetStateAction<boolean>>;
 }
 
-export function EnterCodeSection({ onSend, isLoading, setIsLoading }: EnterCodeSectionProps) {
+export function EnterCodeSection({
+  onSend,
+  isLoading,
+  setIsLoading,
+}: EnterCodeSectionProps) {
   const { applicationId } = useParams<{ applicationId: string }>();
 
   const [error, setError] = useState<string | null>(null);
@@ -90,24 +94,24 @@ export function EnterCodeSection({ onSend, isLoading, setIsLoading }: EnterCodeS
 
   let content = (
     <div className={styles['enter__code']}>
-    {code.map((digit, index) => (
-      <input
-        className={styles['enter__value']}
-        onClick={focusFirstEmpty}
-        placeholder=""
-        maxLength={1}
-        type="text"
-        value={digit}
-        onChange={(event) => handleChange(event.target.value, index)}
-        ref={(el) => {
-          inputRef.current[index] = el;
-        }}
-        onKeyDown={(event) => handleKeyDown(event, index)}
-        key={index}
-      />
-    ))}
-  </div>
-  )
+      {code.map((digit, index) => (
+        <input
+          className={styles['enter__value']}
+          onClick={focusFirstEmpty}
+          placeholder=""
+          maxLength={1}
+          type="text"
+          value={digit}
+          onChange={(event) => handleChange(event.target.value, index)}
+          ref={(el) => {
+            inputRef.current[index] = el;
+          }}
+          onKeyDown={(event) => handleKeyDown(event, index)}
+          key={index}
+        />
+      ))}
+    </div>
+  );
 
   if (isLoading) {
     content = <Loader className={styles['enter__loader']} />;
