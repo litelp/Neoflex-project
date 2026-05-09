@@ -8,8 +8,10 @@ export function ApplicationIdPage() {
   const [step, setStep] = useState<ApplicationIdPageStep>('scoring-form');
 
   const pages: Record<ApplicationIdPageStep, ReactElement> = {
-    'scoring-form': <ScoringFormSection onSuccess={() => setStep('scoring-success')} />,
-    'scoring-success': <ScoringSuccessSection />
-  }
+    'scoring-form': (
+      <ScoringFormSection onSuccess={() => setStep('scoring-success')} />
+    ),
+    'scoring-success': <ScoringSuccessSection />,
+  };
   return pages[step];
 }

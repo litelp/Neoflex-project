@@ -7,10 +7,10 @@ type SignPageStep = 'info' | 'success-info';
 export function SignPage() {
   const [step, setStep] = useState<SignPageStep>('info');
 
-    const pages: Record<SignPageStep, ReactElement> = {
-        'info': <InformationSection onSend={() => setStep('success-info')} />,
-        'success-info': <SuccessInformation />
-    }
+  const pages: Record<SignPageStep, ReactElement> = {
+    info: <InformationSection onSend={() => setStep('success-info')} />,
+    'success-info': <SuccessInformation />,
+  };
 
   return pages[step];
 }

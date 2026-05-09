@@ -91,7 +91,9 @@ export function ScoringFormSection({ onSuccess }: ScoringFormProps) {
               className={`${styles['scoring__field-select']} ${getSelectStatusClass('gender')}`}
             >
               {scoringFormOptions.gender.map((item) => (
-                <option value={item.value} key={item.id} hidden={item.hidden}>{item.text}</option>
+                <option value={item.value} key={item.id} hidden={item.hidden}>
+                  {item.text}
+                </option>
               ))}
             </select>
             {errors.gender && (
@@ -111,7 +113,9 @@ export function ScoringFormSection({ onSuccess }: ScoringFormProps) {
               className={`${styles['scoring__field-select']} ${getSelectStatusClass('maritalStatus')}`}
             >
               {scoringFormOptions.maritalStatus.map((item) => (
-                <option value={item.value} key={item.id} hidden={item.hidden}>{item.text}</option>
+                <option value={item.value} key={item.id} hidden={item.hidden}>
+                  {item.text}
+                </option>
               ))}
             </select>
             {errors.maritalStatus && (
@@ -134,7 +138,9 @@ export function ScoringFormSection({ onSuccess }: ScoringFormProps) {
               className={`${styles['scoring__field-select']} ${getSelectStatusClass('dependentAmount')}`}
             >
               {scoringFormOptions.dependentAmount.map((item) => (
-                <option value={item.value} key={item.id} hidden={item.hidden}>{item.text}</option>
+                <option value={item.value} key={item.id} hidden={item.hidden}>
+                  {item.text}
+                </option>
               ))}
             </select>
             {errors.dependentAmount && (
@@ -210,7 +216,9 @@ export function ScoringFormSection({ onSuccess }: ScoringFormProps) {
               className={`${styles['scoring__field-select']} ${getSelectStatusClass('employmentStatus')}`}
             >
               {scoringFormOptions.employmentStatus.map((item) => (
-                <option value={item.value} key={item.id} hidden={item.hidden}>{item.text}</option>
+                <option value={item.value} key={item.id} hidden={item.hidden}>
+                  {item.text}
+                </option>
               ))}
             </select>
             {errors.employmentStatus && (
@@ -269,7 +277,9 @@ export function ScoringFormSection({ onSuccess }: ScoringFormProps) {
               className={`${styles['scoring__field-select']} ${getSelectStatusClass('position')}`}
             >
               {scoringFormOptions.position.map((item) => (
-                <option value={item.value} key={item.id} hidden={item.hidden}>{item.text}</option>
+                <option value={item.value} key={item.id} hidden={item.hidden}>
+                  {item.text}
+                </option>
               ))}
             </select>
             {errors.position && (
@@ -331,10 +341,10 @@ export function ScoringFormSection({ onSuccess }: ScoringFormProps) {
           )}
           <Button
             className={styles['scoring__button']}
-            text='Continue'
+            text="Continue"
             type="submit"
             loading={isSubmitting}
-           />
+          />
         </div>
       </form>
     </section>

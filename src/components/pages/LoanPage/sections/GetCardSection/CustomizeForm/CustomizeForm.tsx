@@ -277,11 +277,11 @@ export function CustomizeForm() {
           <span className={styles['form__submit-error']}>{submitError}</span>
         )}
         <Button
-            className={styles['form__button']}
-            text='Continue'
-            type="submit"
-            loading={isSubmitting}
-           />
+          className={styles['form__button']}
+          text="Continue"
+          type="submit"
+          loading={isSubmitting}
+        />
       </div>
     </form>
   );

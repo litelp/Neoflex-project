@@ -8,24 +8,42 @@ vi.mock('@/api/applicationApi/applicationApi', () => ({
   sendCode: vi.fn(),
 }));
 
+vi.mock('@/components/Loader/Loader', () => ({
+  Loader: ({ className }: { className?: string }) => (
+    <div className={className} role="status">
+      Loading...
+    </div>
+  ),
+}));
+
 const mockedSendCode = vi.mocked(sendCode);
 
-function renderComponent(onSend = vi.fn()) {
+interface RenderComponentOptions {
+  onSend?: () => void;
+  isLoading?: boolean;
+  setIsLoading?: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function renderComponent({onSend = vi.fn(), isLoading = false, setIsLoading = vi.fn()}: RenderComponentOptions = {}) {
   render(
     <MemoryRouter initialEntries={['/document/1']}>
       <Routes>
         <Route
           path="/document/:applicationId"
-          element={<EnterCodeSection onSend={onSend} />}
+            element={<EnterCodeSection onSend={onSend} isLoading={isLoading} setIsLoading={setIsLoading} />}
         />
       </Routes>
     </MemoryRouter>
   );
 
-  return { onSend };
+  return { onSend, setIsLoading };
 }
 
 describe('EnterCodeSection', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
   it('render code inputs', () => {
     renderComponent();
 
@@ -37,10 +55,11 @@ describe('EnterCodeSection', () => {
   it('send code after entering 4 digits', async () => {
     const user = userEvent.setup();
     const onSend = vi.fn();
+    const setIsLoading = vi.fn();
 
     mockedSendCode.mockResolvedValue();
 
-    renderComponent(onSend);
+    renderComponent({onSend, setIsLoading});
 
     const inputs = screen.getAllByRole('textbox');
 

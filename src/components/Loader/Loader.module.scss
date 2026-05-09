@@ -1,38 +1,38 @@
 $loader-main-color: #808080;
-$loader-spinner-color: #B4387A;
+$loader-spinner-color: #b4387a;
 
 .loader {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    margin: 32px 0 51px;
-    grid-column: 1;
-    border: 2px solid #808080;
-    border-radius: 50%;
-    background: transparent;
-    box-sizing: border-box;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  margin: 32px 0 51px;
+  grid-column: 1;
+  border: 2px solid #808080;
+  border-radius: 50%;
+  background: transparent;
+  box-sizing: border-box;
 
-    &::before {
-        content: '';
-        position: absolute;
-        inset: -2px;
-        border: 1px solid transparent;
-        border-top-color: $loader-spinner-color;
-        border-left-color: $loader-spinner-color;
-        border-radius: 50%;
-        box-sizing: border-box;
-        animation: rotating 1s linear infinite;
-    }
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border: 1px solid transparent;
+    border-top-color: $loader-spinner-color;
+    border-left-color: $loader-spinner-color;
+    border-radius: 50%;
+    box-sizing: border-box;
+    animation: rotating 1s linear infinite;
+  }
 }
 
 @keyframes rotating {
-    0% {
-      transform: rotate(0deg);
-    }
-    50% {
-      transform: rotate(180deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

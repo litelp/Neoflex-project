@@ -131,12 +131,12 @@ export function TableSection({ data, onSend }: TableProps) {
           onChange={setIsAgree}
         />
         <Button
-            className={styles['table__send-btn']}
-            text="Send"
-            disabled={!isAgree}
-            onClick={onSubmit}
-            loading={isLoading}
-         />
+          className={styles['table__send-btn']}
+          text="Send"
+          disabled={!isAgree}
+          onClick={onSubmit}
+          loading={isLoading}
+        />
       </div>
 
       {isModalOpen && <Modal onClose={() => setIsModalOpen(false)} />}

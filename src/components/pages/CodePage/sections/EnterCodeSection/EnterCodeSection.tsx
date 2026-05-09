@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, type Dispatch, type SetStateAction } from 'react';
 import styles from './EnterCodeSection.module.scss';
 import { sendCode } from '@/api/applicationApi/applicationApi';
 import { useParams } from 'react-router-dom';
@@ -6,14 +6,15 @@ import { Loader } from '@/components/Loader/Loader';
 
 interface EnterCodeSectionProps {
   onSend: () => void;
+  isLoading: boolean;
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
 }
 
-export function EnterCodeSection({ onSend }: EnterCodeSectionProps) {
+export function EnterCodeSection({ onSend, isLoading, setIsLoading }: EnterCodeSectionProps) {
   const { applicationId } = useParams<{ applicationId: string }>();
 
   const [error, setError] = useState<string | null>(null);
   const [code, setCode] = useState<string[]>(['', '', '', '']);
-  const [isLoading, setIsLoading] = useState(false);
 
   const inputRef = useRef<(HTMLInputElement | null)[]>([]);
 
@@ -87,31 +88,35 @@ export function EnterCodeSection({ onSend }: EnterCodeSectionProps) {
     }
   };
 
+  let content = (
+    <div className={styles['enter__code']}>
+    {code.map((digit, index) => (
+      <input
+        className={styles['enter__value']}
+        onClick={focusFirstEmpty}
+        placeholder=""
+        maxLength={1}
+        type="text"
+        value={digit}
+        onChange={(event) => handleChange(event.target.value, index)}
+        ref={(el) => {
+          inputRef.current[index] = el;
+        }}
+        onKeyDown={(event) => handleKeyDown(event, index)}
+        key={index}
+      />
+    ))}
+  </div>
+  )
+
+  if (isLoading) {
+    content = <Loader className={styles['enter__loader']} />;
+  }
+
   return (
     <section className={styles.enter}>
       <h3 className={styles['enter__title']}>Please enter confirmation code</h3>
-      {isLoading ? (
-        <Loader className={styles['enter__loader']} />
-      ) : (
-        <div className={styles['enter__code']}>
-          {code.map((digit, index) => (
-            <input
-              className={styles['enter__value']}
-              onClick={focusFirstEmpty}
-              placeholder=""
-              maxLength={1}
-              type="text"
-              value={digit}
-              onChange={(event) => handleChange(event.target.value, index)}
-              ref={(el) => {
-                inputRef.current[index] = el;
-              }}
-              onKeyDown={(event) => handleKeyDown(event, index)}
-              key={index}
-            />
-          ))}
-        </div>
-      )}
+      {content}
       {error && <p className={styles['enter__error']}>{error}</p>}
     </section>
   );

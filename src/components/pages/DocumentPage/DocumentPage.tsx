@@ -45,11 +45,16 @@ export function DocumentPage() {
   }, [applicationId]);
 
   const pages: Record<DocumentPageStep, ReactElement> = {
-    'table': <TableSection data={schedule} onSend={() => setStep('success-document')} />,
-    'success-document': <SuccessDocument />
-  }
+    table: (
+      <TableSection
+        data={schedule}
+        onSend={() => setStep('success-document')}
+      />
+    ),
+    'success-document': <SuccessDocument />,
+  };
 
-  if (isLoading) return <Loader className={styles['document__loader']} />
+  if (isLoading) return <Loader className={styles['document__loader']} />;
 
   if (error) return <p className={styles['document__error']}>{error}</p>;
 
