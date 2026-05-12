@@ -1,0 +1,49 @@
+@use '@/styles/mixins/typography' as typography;
+
+$text-color: #1A202C;
+$border-color: #808080;
+$check-color: #FFFFFF;
+$active-color: #3182CE;
+
+.checkbox {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+
+    &__input {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    &__field {
+        flex-shrink: 0;
+        width: 20px;
+        height: 20px;
+        border: 2px solid $border-color;
+        border-radius: 4px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 12px;
+        transition: 0.2s ease;
+    }
+
+    &__input:checked + &__field {
+        background-color: $active-color;
+        border-color: $active-color;
+        background-image: url('@/assets/images/Line.svg');
+    }
+    &:hover &__field {
+        border-color: $active-color;
+    }
+
+    &__text {
+        margin-left: 14px;
+        font-size: 18px;
+        line-height: 1.12;
+        letter-spacing: 0;
+        @include typography.ubuntu-400;
+        color: $text-color;
+    }
+}

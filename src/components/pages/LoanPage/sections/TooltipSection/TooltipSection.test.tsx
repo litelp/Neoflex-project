@@ -1,5 +1,17 @@
 import { render, screen } from '@testing-library/react';
 import { TooltipSection } from './TooltipSection';
+import { MemoryRouter } from 'react-router-dom';
+
+vi.mock('react-redux', () => ({
+  useSelector: vi.fn((selector) =>
+    selector({
+      application: {
+        status: 'form',
+        applicationId: null,
+      },
+    })
+  ),
+}));
 
 vi.mock('./Tooltip/Tooltip', () => ({
   Tooltip: ({ children }: { children: React.ReactNode }) => (
@@ -7,9 +19,17 @@ vi.mock('./Tooltip/Tooltip', () => ({
   ),
 }));
 
+const renderComponent = () => {
+  render(
+    <MemoryRouter>
+      <TooltipSection />
+    </MemoryRouter>
+  );
+};
+
 describe('TooltipSection', () => {
   it('render main content', () => {
-    render(<TooltipSection />);
+    renderComponent();
 
     expect(
       screen.getByText('Platinum digital credit card')
@@ -22,7 +42,7 @@ describe('TooltipSection', () => {
   });
 
   it('render benefits', () => {
-    render(<TooltipSection />);
+    renderComponent();
 
     expect(screen.getByText('Up to 160 days')).toBeInTheDocument();
     expect(screen.getByText('No percent')).toBeInTheDocument();
@@ -33,7 +53,7 @@ describe('TooltipSection', () => {
   });
 
   it('render 3 benefit items', () => {
-    render(<TooltipSection />);
+    renderComponent();
 
     expect(screen.getAllByRole('listitem')).toHaveLength(3);
   });

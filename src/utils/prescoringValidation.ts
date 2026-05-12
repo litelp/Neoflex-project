@@ -3,7 +3,7 @@ export const MAX_AMOUNT = 600000;
 
 const latin = /^[A-Za-z]+$/;
 
-export const validation = {
+export const prescoringValidation = {
   amount: {
     valueAsNumber: true,
     validate: (value: number) => {

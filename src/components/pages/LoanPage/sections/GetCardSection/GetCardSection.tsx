@@ -1,7 +1,38 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { CreditOffers } from './CreditOffers/CreditOffers';
 import { CustomizeForm } from './CustomizeForm/CustomizeForm';
 import styles from './GetCardSection.module.scss';
+import type { RootState } from '@/store/store';
+import { PreliminaryDecision } from './PreliminaryDecision/PreliminaryDecision';
+import { useEffect } from 'react';
+import { getApplication } from '@/api/applicationApi/applicationApi';
+import { convertBackToFrontStatus } from '@/utils/applicationStatus';
+import { removeOffers, setApplicationStatus } from '@/store/slice';
 
 export function GetCardSection() {
+  const dispatch = useDispatch();
+  const status = useSelector((state: RootState) => state.application.status);
+  const applicationId = useSelector(
+    (state: RootState) => state.application.applicationId
+  );
+
+  useEffect(() => {
+    if (!applicationId) return;
+
+    const syncApplicationStatus = async (applicationId: number) => {
+      try {
+        const application = await getApplication(applicationId);
+        const uiStatus = convertBackToFrontStatus(application.status);
+
+        dispatch(setApplicationStatus(uiStatus));
+      } catch {
+        dispatch(removeOffers());
+      }
+    };
+
+    syncApplicationStatus(applicationId);
+  }, [applicationId, dispatch]);
+
   return (
     <section className={styles['get-card']}>
       <h3 className={styles['get-card__title']}>How to get a card</h3>
@@ -36,7 +67,9 @@ export function GetCardSection() {
           </span>
         </li>
       </ul>
-      <CustomizeForm />
+      {status === 'form' && <CustomizeForm />}
+      {status === 'offers' && <CreditOffers />}
+      {status === 'sent' && <PreliminaryDecision />}
     </section>
   );
 }

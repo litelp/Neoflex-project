@@ -1,17 +1,19 @@
-import type { ButtonHTMLAttributes, ReactNode } from 'react';
+import type { ButtonHTMLAttributes } from 'react';
 import styles from './Button.module.scss';
+import { Loader } from '../Loader/Loader';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text?: string;
-  children?: ReactNode;
   className?: string;
+  loading?: boolean;
 }
 
 export function Button({
   text,
-  children,
   className = '',
   type = 'button',
+  loading = false,
+  disabled,
   ...props
 }: ButtonProps) {
   return (
@@ -19,8 +21,9 @@ export function Button({
       {...props}
       type={type}
       className={`${styles.button} ${className}`.trim()}
+      disabled={disabled || loading}
     >
-      {children ?? text}
+      {loading ? <Loader className={styles['button__loader']} /> : text}
     </button>
   );
 }

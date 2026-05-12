@@ -2,8 +2,42 @@ import { Button } from '@/components/Button/Button';
 import styles from './TooltipSection.module.scss';
 import creditCard from '@assets/images/loan_card.png';
 import { Tooltip } from './Tooltip/Tooltip';
+import type { RootState } from '@/store/store';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+const buttonText = {
+  form: 'Apply for card',
+  offers: 'Choose an offer',
+  sent: 'Continue registration',
+};
 
 export function TooltipSection() {
+  const navigate = useNavigate();
+
+  const status = useSelector((state: RootState) => state.application.status);
+  const applicationId = useSelector(
+    (state: RootState) => state.application.applicationId
+  );
+
+  const handleClick = () => {
+    if (status === 'form') {
+      document.getElementById('form')?.scrollIntoView({ behavior: 'smooth' });
+
+      return;
+    }
+
+    if (status === 'offers') {
+      document.getElementById('offers')?.scrollIntoView({ behavior: 'smooth' });
+
+      return;
+    }
+
+    if (status === 'sent' && applicationId) {
+      navigate(`/loan/${applicationId}`);
+    }
+  };
+
   return (
     <section className={styles.tooltip}>
       <h2 className={styles['tooltip__title']}>Platinum digital credit card</h2>
@@ -34,7 +68,11 @@ export function TooltipSection() {
           </Tooltip>
         </li>
       </ul>
-      <Button className={styles['tooltip__button']} text="Apply for card" />
+      <Button
+        className={styles['tooltip__button']}
+        text={buttonText[status]}
+        onClick={handleClick}
+      />
       <img
         className={styles['tooltip__image']}
         src={creditCard}

@@ -1,0 +1,26 @@
+@use '@/styles/mixins/typography' as typography;
+
+$title-color: #1C1C1E;
+$text-color: #4F5665;
+
+.success-doc {
+    margin: 166px auto 238px;
+    text-align: center;
+
+    &__title {
+        margin: 0 0 32px;
+        font-size: 30px;
+        line-height: 1.12;
+        letter-spacing: 0.02em;
+        @include typography.ubuntu-700;
+        color: $title-color;
+    }
+
+    &__text {
+        font-size: 16px;
+        line-height: 1.12;
+        letter-spacing: 0.02em;
+        @include typography.ubuntu-500;
+        color: $text-color;
+    }
+}
