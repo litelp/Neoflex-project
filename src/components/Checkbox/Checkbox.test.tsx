@@ -21,4 +21,18 @@ describe('Checkbox', () => {
 
     expect(onChange).toHaveBeenCalledWith(true);
   });
+
+  it('call onChange with false after second click', async () => {
+    const user = userEvent.setup();
+    const onChange = vi.fn();
+
+    render(<Checkbox text="I agree" onChange={onChange} />);
+
+    const checkbox = screen.getByRole('checkbox');
+
+    await user.click(checkbox);
+    await user.click(checkbox);
+
+    expect(onChange).toHaveBeenLastCalledWith(false);
+  });
 });
