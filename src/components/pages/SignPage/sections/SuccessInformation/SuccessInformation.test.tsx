@@ -16,4 +16,22 @@ describe('SuccessInformation', () => {
       )
     ).toBeInTheDocument();
   });
+
+  it('render title', () => {
+    render(<SuccessInformation />);
+
+    expect(
+      screen.getByRole('heading', {
+        name: /documents have been successfully signed/i,
+      })
+    ).toBeInTheDocument();
+  });
+
+  it('render confirmation text', () => {
+    render(<SuccessInformation />);
+
+    expect(
+      screen.getByText(/within 10 minutes you will be sent a pin code/i)
+    ).toBeInTheDocument();
+  });
 });

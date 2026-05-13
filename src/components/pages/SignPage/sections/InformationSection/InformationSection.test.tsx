@@ -46,4 +46,10 @@ describe('InformationSection', () => {
     await waitFor(() => expect(mockedSendInfo).toHaveBeenCalledWith(1));
     expect(onSend).toHaveBeenCalled();
   });
+
+  it('disable send button before agreement', () => {
+    renderComponent();
+
+    expect(screen.getByRole('button', { name: 'Send' })).toBeDisabled();
+  });
 });

@@ -11,6 +11,14 @@ vi.mock('./CustomizeForm/CustomizeForm', () => ({
   CustomizeForm: () => <div data-testid="customize-form" />,
 }));
 
+vi.mock('./CreditOffers/CreditOffers', () => ({
+  CreditOffers: () => <div data-testid="credit-offers" />,
+}));
+
+vi.mock('./PreliminaryDecision/PreliminaryDecision', () => ({
+  PreliminaryDecision: () => <div data-testid="preliminary-decision" />,
+}));
+
 describe('GetCardSection', () => {
   beforeEach(() => {
     vi.mocked(useSelector).mockImplementation((selector) =>
@@ -57,5 +65,35 @@ describe('GetCardSection', () => {
     render(<GetCardSection />);
 
     expect(screen.getAllByRole('listitem')).toHaveLength(3);
+  });
+
+  it('render credit offers when status is offers', () => {
+    vi.mocked(useSelector).mockImplementation((selector) =>
+      selector({
+        application: {
+          status: 'offers',
+          applicationId: null,
+        },
+      })
+    );
+
+    render(<GetCardSection />);
+
+    expect(screen.getByTestId('credit-offers')).toBeInTheDocument();
+  });
+
+  it('render preliminary decision when status is sent', () => {
+    vi.mocked(useSelector).mockImplementation((selector) =>
+      selector({
+        application: {
+          status: 'sent',
+          applicationId: null,
+        },
+      })
+    );
+
+    render(<GetCardSection />);
+
+    expect(screen.getByTestId('preliminary-decision')).toBeInTheDocument();
   });
 });

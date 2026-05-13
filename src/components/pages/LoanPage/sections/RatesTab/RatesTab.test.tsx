@@ -36,4 +36,20 @@ describe('RatesTab', () => {
       )
     ).toBeInTheDocument();
   });
+
+  it('render rate conditions', () => {
+    render(<RatesTab />);
+
+    expect(screen.getByText('Card currency')).toBeInTheDocument();
+    expect(screen.getByText('Interest free period')).toBeInTheDocument();
+    expect(screen.getByText('Payment system')).toBeInTheDocument();
+  });
+
+  it('render rate descriptions', () => {
+    render(<RatesTab />);
+
+    expect(screen.getByText('Rubles, dollars, euro')).toBeInTheDocument();
+    expect(screen.getByText('0% up to 160 days')).toBeInTheDocument();
+    expect(screen.getByText('600 000 ₽')).toBeInTheDocument();
+  });
 });

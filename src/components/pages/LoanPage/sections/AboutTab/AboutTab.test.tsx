@@ -42,4 +42,10 @@ describe('AboutTab', () => {
 
     expect(screen.getAllByRole('img')).toHaveLength(5);
   });
+
+  it('render 5 cards', () => {
+    render(<AboutTab />);
+
+    expect(screen.getAllByRole('article')).toHaveLength(5);
+  });
 });

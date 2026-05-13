@@ -18,4 +18,16 @@ describe('Tooltip', () => {
     await user.unhover(screen.getByText('Hover me'));
     expect(screen.queryByText('Tooltip text')).not.toBeInTheDocument();
   });
+
+  it('render children content', () => {
+    render(
+      <Tooltip text="Tooltip text">
+        <button type="button">Hover me</button>
+      </Tooltip>
+    );
+
+    expect(
+      screen.getByRole('button', { name: /hover me/i })
+    ).toBeInTheDocument();
+  });
 });

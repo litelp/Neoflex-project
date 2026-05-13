@@ -41,6 +41,10 @@ function renderComponent(onSend = vi.fn()) {
 }
 
 describe('TableSection', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
   it('render payment schedule table', () => {
     renderComponent();
 

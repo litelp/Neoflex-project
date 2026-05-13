@@ -75,4 +75,18 @@ describe('CreditOffers', () => {
       payload: 1,
     });
   });
+
+  it('show error when apply offer fails', async () => {
+    const user = userEvent.setup();
+
+    mockedApplyOffer.mockRejectedValue(new Error('Request failed'));
+
+    render(<CreditOffers />);
+
+    await user.click(screen.getByRole('button', { name: 'Select' }));
+
+    expect(
+      await screen.findByText('Failed to apply offer')
+    ).toBeInTheDocument();
+  });
 });
