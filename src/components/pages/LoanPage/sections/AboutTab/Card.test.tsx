@@ -26,4 +26,10 @@ describe('Card', () => {
     const article = screen.getByRole('article');
     expect(article).toHaveClass('custom-class');
   });
+
+  it('render as article', () => {
+    render(<Card icon="test.png" title="Title" text="Text" />);
+
+    expect(screen.getByRole('article')).toBeInTheDocument();
+  });
 });

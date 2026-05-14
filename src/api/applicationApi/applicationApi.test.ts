@@ -14,7 +14,11 @@ vi.mock('axios');
 
 const mockedAxios = vi.mocked(axios);
 
-describe('sendApplication', () => {
+describe('applicationApi', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
   it('send application data and return response data', async () => {
     const applicationData = {
       amount: 15000,

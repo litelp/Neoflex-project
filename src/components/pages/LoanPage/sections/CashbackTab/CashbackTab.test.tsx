@@ -28,4 +28,18 @@ describe('CashbackTab', () => {
     expect(screen.getByText('up to 3%')).toBeInTheDocument();
     expect(screen.getByText('30%')).toBeInTheDocument();
   });
+
+  it('render 6 cashback items', () => {
+    render(<CashbackTab />);
+
+    expect(screen.getAllByRole('listitem')).toHaveLength(6);
+  });
+
+  it('render cashback values', () => {
+    render(<CashbackTab />);
+
+    expect(screen.getAllByText('5%')).toHaveLength(2);
+    expect(screen.getByText('2%')).toBeInTheDocument();
+    expect(screen.getByText('30%')).toBeInTheDocument();
+  });
 });

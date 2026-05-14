@@ -78,4 +78,14 @@ describe('DocumentPage', () => {
 
     expect(await screen.findByText('SuccessDocument')).toBeInTheDocument();
   });
+
+  it('show error when request fails', async () => {
+    mockedGetApplication.mockRejectedValue(new Error('Request failed'));
+
+    renderComponent();
+
+    expect(
+      await screen.findByText('Failed to load payment schedule')
+    ).toBeInTheDocument();
+  });
 });

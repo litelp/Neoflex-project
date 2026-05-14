@@ -18,6 +18,10 @@ vi.mock('react-router-dom', async () => {
 });
 
 describe('Modal', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
   it('render modal text', () => {
     render(
       <MemoryRouter>

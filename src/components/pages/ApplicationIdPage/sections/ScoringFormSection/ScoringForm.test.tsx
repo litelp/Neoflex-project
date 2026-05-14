@@ -26,6 +26,10 @@ function renderComponent(onSuccess = vi.fn()) {
 }
 
 describe('ScoringFormSection', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
   it('render form title', () => {
     renderComponent();
 
@@ -80,5 +84,18 @@ describe('ScoringFormSection', () => {
     });
 
     expect(onSuccess).toHaveBeenCalled();
+  });
+
+  it('show validation errors when form is empty', async () => {
+    const user = userEvent.setup();
+
+    renderComponent();
+
+    await user.click(screen.getByRole('button', { name: /continue/i }));
+
+    expect(
+      await screen.findAllByText(/select one of the options/i)
+    ).not.toHaveLength(0);
+    expect(mockedSendScoringForm).not.toHaveBeenCalled();
   });
 });

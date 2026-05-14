@@ -16,6 +16,10 @@ function renderCurrencyRatesSection() {
 }
 
 describe('CurrencyRatesSection', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
   it('show loader while data is loading', () => {
     vi.mocked(getRequiredRates).mockReturnValue(new Promise(() => {}));
 

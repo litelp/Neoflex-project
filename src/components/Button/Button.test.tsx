@@ -2,6 +2,10 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Button } from './Button';
 
+vi.mock('../Loader/Loader', () => ({
+  Loader: () => <span>Loading...</span>,
+}));
+
 describe('Button', () => {
   it('render text', () => {
     render(<Button text="Click me" />);
@@ -26,5 +30,17 @@ describe('Button', () => {
     render(<Button text="Submit" type="submit" />);
 
     expect(screen.getByRole('button')).toHaveAttribute('type', 'submit');
+  });
+
+  it('render loader when loading is true', () => {
+    render(<Button text="Click me" loading />);
+
+    expect(screen.getByText('Loading...')).toBeInTheDocument();
+  });
+
+  it('disable button when loading is true', () => {
+    render(<Button text="Click me" loading />);
+
+    expect(screen.getByRole('button')).toBeDisabled();
   });
 });

@@ -81,4 +81,11 @@ describe('EnterCodeSection', () => {
 
     expect(onSend).toHaveBeenCalled();
   });
+
+  it('render loader when isLoading is true', () => {
+    renderComponent({ isLoading: true });
+
+    expect(screen.getByRole('status')).toBeInTheDocument();
+    expect(screen.queryAllByRole('textbox')).toHaveLength(0);
+  });
 });

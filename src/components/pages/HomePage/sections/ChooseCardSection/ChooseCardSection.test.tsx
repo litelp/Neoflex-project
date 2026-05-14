@@ -20,4 +20,15 @@ describe('ChooseCardSection', () => {
 
     expect(images).toHaveLength(4);
   });
+
+  it('render images with correct alt text', () => {
+    render(<ChooseCardSection />);
+
+    expect(
+      screen.getByAltText('Credit card design option 1')
+    ).toBeInTheDocument();
+    expect(
+      screen.getByAltText('Credit card design option 4')
+    ).toBeInTheDocument();
+  });
 });
